@@ -34,8 +34,8 @@
         <div class="text-center fs-6">
             <!--<a href="#">Forget password?</a> or <a href="#">Sign up</a>-->
         </div>
-    </div>
-                               <!-- <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
+    
+                               <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
                                 <script type='text/javascript' src='#'></script>
                                 <script type='text/javascript' src='#'></script>
                                 <script type='text/javascript' src='#'></script>
@@ -43,8 +43,9 @@
                                 <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
                                 myLink.addEventListener('click', function(e) {
                                   e.preventDefault();
-                                });</script>-->
-                                <?php
+                                });</script>
+        <?php
+        session_start();
         if (isset($_POST['userName'])){
             $ip= '127.0.0.1';
             $username='root';
@@ -55,11 +56,14 @@
             if ($connection->connect_error) {
                 die('C\'è stato un errore: ' . $connection->connect_error);
             }
-            $sql ='SELECT Nome FROM users WHERE Pass="'.md5($_POST['password']).'" AND Username="'.$_POST['userName'].'" ';
+            $sql ='SELECT * FROM users WHERE Pass="'.md5($_POST['password']).'" AND Username="'.$_POST['userName'].'" ';
             $result =$connection->query($sql);
 
             if($result->num_rows>0){
                 while($row=$result->fetch_assoc()){
+                    $_SESSION['Nome']=$row['Nome'];
+                    $_SESSION['Cognome']=$row['Cognome'];
+                    $_SESSION['Permessi']=$row['Permessi'];
                 
                   header("Location: Home.php");
                   
@@ -72,5 +76,6 @@
         }
 
 ?>
+</div>
 </body>
 </html>
