@@ -61,6 +61,7 @@
 
             if($result->num_rows>0){
                 while($row=$result->fetch_assoc()){
+                    $_SESSION['Id']=$row['Id'];
                     $_SESSION['Nome']=$row['Nome'];
                     $_SESSION['Cognome']=$row['Cognome'];
                     $_SESSION['Permessi']=$row['Permessi'];

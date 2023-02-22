@@ -1,3 +1,19 @@
+<?php
+     session_start();
+     if (isset($_POST['Nome'])){
+         $ip= '127.0.0.1';
+         $username='root';
+         $password='';
+         $database='dvr';
+
+         $connection=new mysqli($ip,$username,$password,$database);
+         if ($connection->connect_error) {
+             die('C\'è stato un errore: ' . $connection->connect_error);
+         }
+        $sql='INSERT INTO documento (Id, Id_Operatore, Nome, DataU, PesoEffettivo, AltezzaIniziale, DistanzaVerticale, DistanzaOrizzontale, DistanzaAngolare, PresaCarico, PesoMax, IndiceSollevamento, FrequenzaGesti, Prezzo) VALUES (NULL, "'.$_SESSION['Id'].'", "'.$_POST['Nome'].'", "'.$_POST['Data'].'", "'.$_POST['pesoEff'].'", "'.$_POST['AltIn'].'", "'.$_POST['DistVert'].'", "'.$_POST['DistOrizz'].'", "'.$_POST['DistAngo'].'", "'.$_POST['PresaC'].'", "'.$_POST['PesoMax'].'", "'.$_POST['IndiceSoll'].'", "'.$_POST['Freq'].'", "'.$_POST['Prezzo'].'")';
+         $result =$connection->query($sql);
+     }
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +23,26 @@
     <title>Document</title>
 </head>
 <body>
-    <input id="pesoEff"     placeholder="Peso Effettivo (Kg)"><br>
-    <input id="AltIn"       placeholder="Altezza iniziale (Cm)"><br>
-    <input Id="DistVert"    placeholder="Distanza verticale (Cm)"><br>
-    <input Id="DistOrizz"   placeholder="Distanza orizzontale (Cm)"><br>
-    <input Id="DistAngo"    placeholder="Distanza angolare"><br>
-    <input Id="PresaC"      placeholder="Presa sul carico"><br>
-    <input Id="Freq"        placeholder="Frequenza (volte al minuto)"><br>
-    <input Id="Dur"         placeholder="Durata (Ore)">  
-    <button onclick="calcola()">Calcola</button>
+    <form method="POST" action="Home.php">
+   
+    <input name="Nome"        placeholder="Nome"><br>
+    <input name="Data"        placeholder="Data" type="date"><br>
+    <input name="pesoEff"     placeholder="Peso Effettivo (Kg)"><br>
+    <input name="AltIn"       placeholder="Altezza iniziale (Cm)"><br>
+    <input name="DistVert"    placeholder="Distanza verticale (Cm)"><br>
+    <input name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"><br>
+    <input name="DistAngo"    placeholder="Distanza angolare"><br>
+    <input name="PresaC"      placeholder="Presa sul carico"><br>
+    <input name="PesoMax"     placeholder="Peso massimo"><br>
+    <input name="IndiceSoll"  placeholder="Indice sollevamento"><br>
+    <input name="Freq"        placeholder="Frequenza"><br>
+    <input name="Prezzo"      placeholder="Prezzo">  
+    <button type="submit">REGISTRATI</button>
+    <a href="Home.php">
+    <input type="button" value="Torna alla pagina principale">  
+    </a>
+    </form>
+   
+
 </body>
 </html>
