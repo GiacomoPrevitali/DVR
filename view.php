@@ -13,7 +13,7 @@
         <tr class="TitleTable">
             <th class="thID">Id</th>
            <!-- <th>Id Operatore</th>-->
-            <th class="thNA">Nome</th>
+            <th class="thNA">Ragione Sociale</th>
             <th class="thDA">Data</th>
             <th>Peso Effettivo</th>
             <th>Altezza Iniziale</th>
@@ -28,42 +28,46 @@
         </tr>
         <?php
         session_start();
-     $ip= '127.0.0.1';
-     $username='root';
-     $password='';
-     $database='dvr';
+        if(isset($_SESSION['Nome'])){
+            $ip= '127.0.0.1';
+            $username='root';
+            $password='';
+            $database='dvr';
 
-     $connection=new mysqli($ip,$username,$password,$database);
-     if ($connection->connect_error) {
-         die('C\'è stato un errore: ' . $connection->connect_error);
-     }
-     $sql ='SELECT * FROM documento WHERE Id_Operatore="'.$_SESSION['Id'].'"';
-     $result =$connection->query($sql);
-     if($result->num_rows>0){
+            $connection=new mysqli($ip,$username,$password,$database);
+            if ($connection->connect_error) {
+                die('C\'è stato un errore: ' . $connection->connect_error);
+            }
+                $sql ='SELECT * FROM documento WHERE Id_Operatore="'.$_SESSION['Id'].'"';
+                $result =$connection->query($sql);
+                if($result->num_rows>0){
 
-        while($row=$result->fetch_assoc()){
-        echo '<tr class="row1">  <td>'.$row['Id'].'</td>
-                   
-                    <td>'.$row['Nome'].'</td>
-                    <td>'.$row['DataU'].'</td>
-                    <td>'.$row['PesoEffettivo'].'</td>
-                    <td>'.$row['AltezzaIniziale'].'</td>
-                    <td>'.$row['DistanzaVerticale'].'</td>
-                    <td>'.$row['DistanzaOrizzontale'].'</td>
-                    <td>'.$row['DistanzaAngolare'].'</td>
-                    <td>'.$row['PresaCarico'].'</td>
-                    <td>'.$row['PesoMax'].'</td>
-                    <td>'.$row['IndiceSollevamento'].'</td>
-                    <td>'.$row['FrequenzaGesti'].'</td>
-                    <td>'.$row['Prezzo'].'</td>
+                    while($row=$result->fetch_assoc()){
+                        echo '<tr class="row1">  <td>'.$row['Id'].'</td>
+                        <td>'.$row['Nome'].'</td>
+                        <td>'.$row['DataU'].'</td>
+                        <td>'.$row['PesoEffettivo'].'</td>
+                        <td>'.$row['AltezzaIniziale'].'</td>
+                        <td>'.$row['DistanzaVerticale'].'</td>
+                        <td>'.$row['DistanzaOrizzontale'].'</td>
+                        <td>'.$row['DistanzaAngolare'].'</td>
+                        <td>'.$row['PresaCarico'].'</td>
+                        <td>'.$row['PesoMax'].'</td>
+                        <td>'.$row['IndiceSollevamento'].'</td>
+                        <td>'.$row['FrequenzaGesti'].'</td>
+                        <td>'.$row['Prezzo'].'</td>
+                        </tr>';
 
-
-        </tr>';
-
-        }
-    }
+                    }
+                }
+            }else{
+                header("Location: index.php?error");
+            }
         ?>
     </table>
+    <a href="Home.php">
+    <input type="button" value="Torna alla pagina principale">  
+    </a>
    
 </body>
 </html>

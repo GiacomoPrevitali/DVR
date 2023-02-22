@@ -178,3 +178,7 @@ table {
   .row1{
     height: 30px;
   }
+
+  .Name{
+text-align: left;
+  }
