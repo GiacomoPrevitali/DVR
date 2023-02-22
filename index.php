@@ -64,9 +64,13 @@
                     $_SESSION['Id']=$row['Id'];
                     $_SESSION['Nome']=$row['Nome'];
                     $_SESSION['Cognome']=$row['Cognome'];
-                    $_SESSION['Permessi']=$row['Permessi'];
+                    $_SESSION['Permessi']=$row['Permesso'];
                 
-                  header("Location: Home.php");
+                 header("Location: Home.php");
+                 /*echo $_SESSION['Id'];
+                 echo $_SESSION['Nome'];
+                 echo $_SESSION['Cognome'];
+                 echo $_SESSION['Permessi'];*/
                   
                 }
               }else{

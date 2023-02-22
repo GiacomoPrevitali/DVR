@@ -1,5 +1,6 @@
 <?php
      session_start();
+     if(isset($_SESSION['Nome'])){
      if (isset($_POST['Nome'])){
          $ip= '127.0.0.1';
          $username='root';
@@ -13,6 +14,9 @@
         $sql='INSERT INTO documento (Id, Id_Operatore, Nome, DataU, PesoEffettivo, AltezzaIniziale, DistanzaVerticale, DistanzaOrizzontale, DistanzaAngolare, PresaCarico, PesoMax, IndiceSollevamento, FrequenzaGesti, Prezzo) VALUES (NULL, "'.$_SESSION['Id'].'", "'.$_POST['Nome'].'", "'.$_POST['Data'].'", "'.$_POST['pesoEff'].'", "'.$_POST['AltIn'].'", "'.$_POST['DistVert'].'", "'.$_POST['DistOrizz'].'", "'.$_POST['DistAngo'].'", "'.$_POST['PresaC'].'", "'.$_POST['PesoMax'].'", "'.$_POST['IndiceSoll'].'", "'.$_POST['Freq'].'", "'.$_POST['Prezzo'].'")';
          $result =$connection->query($sql);
      }
+    }else{
+        header("Location: index.php");
+    }
     ?>
 <!DOCTYPE html>
 <html lang="en">

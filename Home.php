@@ -17,7 +17,11 @@
     
     <?php
     session_start();
+    if(isset($_SESSION['Nome'])){
     echo "Ciao, ". $_SESSION['Nome']." ".$_SESSION['Cognome'];
+    }else{
+    header("Location: index.php");
+}
     ?><br>
     <a href="new.php">
     <button type="button" class="btn btn-outline-primary">Compila un nuovo DVR</button>

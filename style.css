@@ -130,3 +130,51 @@ padding: 40px 15px 15px 15px;
   left: 45%;
 
 }
+
+
+table {
+    border:1px solid;
+    width: 90%;
+    height:auto;
+    border-collapse: collapse;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 15px;
+    table-layout:auto;   
+  }
+  tr{
+    border:1px solid;
+  }
+  table tr td , table tr th {
+    border:1px solid;
+    text-align: center;
+  }
+.TitleTable{
+  background-color: #039BE5;
+}
+  .thID{
+    width: 3%;
+  }
+  .thNA{
+    width: 6%;
+  }
+  .thDA{
+    width: 7%;
+  }
+
+  .thDO{
+    width: 8%;
+  }
+  .thDV{
+    width: 8%;
+  }
+  .thAN{
+    width: 8%;
+  }
+  .thIS{
+    width: 9%;
+  }
+
+  .row1{
+    height: 30px;
+  }
