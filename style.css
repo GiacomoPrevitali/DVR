@@ -174,11 +174,19 @@ table {
   .thIS{
     width: 9%;
   }
-
   .row1{
     height: 30px;
   }
 
-  .Name{
-text-align: left;
-  }
+.BtnAccount{
+  position: relative;
+  left: -2%;
+}
+.Name{
+  color: white;
+}
+.BtnCh{
+  /*dimesioni bottone*/
+  width: 15%;
+  align-content: baseline;
+}

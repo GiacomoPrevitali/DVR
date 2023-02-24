@@ -9,23 +9,7 @@
     <title>Visualizza</title>
 </head>
 <body>
-    <table >
-        <tr class="TitleTable">
-            <th class="thID">Id</th>
-           <!-- <th>Id Operatore</th>-->
-            <th class="thNA">Ragione Sociale</th>
-            <th class="thDA">Data</th>
-            <th>Peso Effettivo</th>
-            <th>Altezza Iniziale</th>
-            <th class="thDV">Distanza Verticale</th>
-            <th class="thDO">Distanza Orizzontale</th>
-            <th class="thAN">Distanza Angolare</th>
-            <th>Presa Carico</th>
-            <th>Peso Massimo</th>
-            <th class="thIS">Indice Sollevamento</th>
-            <th>Frequenza</th>
-            <th>Prezzo</th>
-        </tr>
+
         <?php
         session_start();
         if(isset($_SESSION['Nome'])){
@@ -41,8 +25,27 @@
                 $sql ='SELECT * FROM documento WHERE Id_Operatore="'.$_SESSION['Id'].'"';
                 $result =$connection->query($sql);
                 if($result->num_rows>0){
-
+                    $title=true;
                     while($row=$result->fetch_assoc()){
+                        if($title){
+                            echo' <table >
+                            <tr class="TitleTable">
+                                <th class="thID">Id</th>
+                                <th class="thNA">Ragione Sociale</th>
+                                <th class="thDA">Data</th>
+                                <th>Peso Effettivo</th>
+                                <th>Altezza Iniziale</th>
+                                <th class="thDV">Distanza Verticale</th>
+                                <th class="thDO">Distanza Orizzontale</th>
+                                <th class="thAN">Distanza Angolare</th>
+                                <th>Presa Carico</th>
+                                <th>Peso Massimo</th>
+                                <th class="thIS">Indice Sollevamento</th>
+                                <th>Frequenza</th>
+                                <th>Prezzo</th>
+                            </tr>';
+                            $title=false;
+                        }
                         echo '<tr class="row1">  <td>'.$row['Id'].'</td>
                         <td>'.$row['Nome'].'</td>
                         <td>'.$row['DataU'].'</td>
@@ -59,6 +62,8 @@
                         </tr>';
 
                     }
+                }else{
+                    echo '<div class="alert alert-danger my-4">Non sono presenti DVR</div>';
                 }
             }else{
                 header("Location: index.php?error");

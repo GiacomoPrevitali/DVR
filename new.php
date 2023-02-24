@@ -3,7 +3,7 @@
      if(isset($_SESSION['Nome'])){
      if (isset($_POST['Nome'])){
         
-       //$KpesoNIOSH=23;
+       $KpesoNIOSH=23;
 
         //DISTANZA ORIZZONTALE
         if($_REQUEST['DistOrizz']>=0 AND $_REQUEST['DistOrizz']<25 ){
@@ -110,7 +110,7 @@
         }
         
     
-        $PesoRaccomandato=$AltezzaTerra*$DistanzaOrizzontale* $DistanzaVerticale*$DistanzaAngolare*$FrequenzaMinuto*$FattorePresa;
+        $PesoRaccomandato=$KpesoNIOSH*$AltezzaTerra*$DistanzaOrizzontale* $DistanzaVerticale*$DistanzaAngolare*$FrequenzaMinuto*$FattorePresa;
         $IndiceSollevamento=$_REQUEST['pesoEff']/$PesoRaccomandato;
 
          $ip= '127.0.0.1';
@@ -123,7 +123,7 @@
              die('C\'è stato un errore: ' . $connection->connect_error);
          }
        
-         $sql='INSERT INTO documento (Id,Id_Operatore, Nome, DataU, PesoEffettivo, AltezzaIniziale, DistanzaVerticale, DistanzaOrizzontale, DistanzaAngolare, PresaCarico, PesoMax, IndiceSollevamento, FrequenzaGesti, Prezzo) VALUES (NULL,"'.$_SESSION['Id'].'", "'.$_POST['Nome'].'", "'.$_POST['Data'].'", "'.$_POST['pesoEff'].'", "'.$_POST['AltIn'].'", "'.$_POST['DistVert'].'", "'.$_POST['DistOrizz'].'", "'.$_POST['DistAngo'].'", "'.$_POST['PresaC'].'", "'.$_POST['PesoMax'].'", "'.$IndiceSollevamento.'", "'.$_POST['Freq'].'", "'.$_POST['Prezzo'].'")';
+         $sql='INSERT INTO documento (Id,Id_Operatore, Nome, DataU, PesoEffettivo, AltezzaIniziale, DistanzaVerticale, DistanzaOrizzontale, DistanzaAngolare, PresaCarico, PesoMax, IndiceSollevamento, FrequenzaGesti, Prezzo,Durata) VALUES (NULL,"'.$_SESSION['Id'].'", "'.$_POST['Nome'].'", "'.$_POST['Data'].'", "'.$_POST['pesoEff'].'", "'.$_POST['AltIn'].'", "'.$_POST['DistVert'].'", "'.$_POST['DistOrizz'].'", "'.$_POST['DistAngo'].'", "'.$_POST['PresaC'].'", "'. $PesoRaccomandato.'", "'.$IndiceSollevamento.'", "'.$_POST['Freq'].'", "'.$_POST['Prezzo'].'","'.$_POST['Durata'].'")';
          $result =$connection->query($sql);
      }
     }else{
@@ -153,6 +153,7 @@
     <!--<input name="IndiceSoll"  placeholder="Indice sollevamento"><br>-->
     <input name="Freq"        placeholder="Frequenza"><br>
     <input name="Prezzo"      placeholder="Prezzo">  
+    <input name="Durata"      placeholder="Durata">  
     <button type="submit">REGISTRATI</button>
     <a href="Home.php">
     <input type="button" value="Torna alla pagina principale">  

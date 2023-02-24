@@ -5,25 +5,29 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script type='text/javascript' src='script.js'></script>
         <link rel="stylesheet" href="style.css" />
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
         <title>Home</title>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-primary">
-            <h1 class="title"> D.V.R.</h1>
+
+        <nav class="navbar navbar bg-dark">
+            <?php
+                session_start();
+                    if(isset($_SESSION['Nome'])){
+                        echo '<h3 class="Name"> Ciao, '. $_SESSION['Nome'].' '.$_SESSION['Cognome'].'</h3>';
+                    //echo '<button type="button" class="btn btn-outline-success">Account</button>';
+                    }else{
+                        header("Location: index.php?error");
+                    }
+            ?>
+            <button type="button" class="btn btn-outline-success BtnAccount" data-bs-toggle="modal" data-bs-target="#exampleModal">Account</button>
         </nav>
-        <?php
-            session_start();
-                if(isset($_SESSION['Nome'])){
-                    echo '<h3 class="Name"> Ciao, '. $_SESSION['Nome'].' '.$_SESSION['Cognome'].'</h3>';
-                }else{
-                    header("Location: index.php?error");
-                }
-        ?>
-        <br>
+
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -47,18 +51,18 @@
             </div>
         </div>
 
-            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Account</button>
+            <br>
             <a href="new.php">
-                <button type="button" class="btn btn-outline-primary">Compila un nuovo DVR</button>
+                <button type="button" class="btn btn-primary BtnCh">Compila un nuovo DVR</button>
             </a>
             <br>
             <a href="view.php">
-                <button type="button" class="btn btn-outline-warning">Visualizza</button>
+                <button type="button" class="btn btn-warning BtnCh">Visualizza</button>
             </a>
             <br>
             <a href="logout.php">
-                <button type="button" class="btn btn-outline-danger">Logout</button>
-            </a>
-
+                <button type="button" class="btn btn-danger BtnCh">Logout</button>
+            </a><br>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
 </html>
