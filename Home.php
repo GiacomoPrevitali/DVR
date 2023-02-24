@@ -20,6 +20,7 @@
                 session_start();
                     if(isset($_SESSION['Nome'])){
                         echo '<h3 class="Name"> Ciao, '. $_SESSION['Nome'].' '.$_SESSION['Cognome'].'</h3>';
+                    //echo '<button type="button" class="btn btn-outline-success">Account</button>';
                     }else{
                         header("Location: index.php?error");
                     }
