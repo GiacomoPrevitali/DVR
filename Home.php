@@ -20,7 +20,7 @@
                 session_start();
                     if(isset($_SESSION['Nome'])){
                         echo '<h3 class="Name"> Ciao, '. $_SESSION['Nome'].' '.$_SESSION['Cognome'].'</h3>';
-                    //echo '<button type="button" class="btn btn-outline-success">Account</button>';
+                   
                     }else{
                         header("Location: index.php?error");
                     }
@@ -41,11 +41,12 @@
                             echo    '<p>Nome: '.$_SESSION['Nome'].'</p>
                                     <p>Cognome: '.$_SESSION['Cognome'].'</p>
                                     <p>Username: '.$_SESSION['Username'].'</p>'
+                                    
                         ?>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Chiudi</button>
                     </div>
                 </div>
             </div>

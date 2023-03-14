@@ -152,6 +152,9 @@ table {
 .TitleTable{
   background-color: #039BE5;
 }
+.navbar{
+background-color: red;
+}
   .thID{
     width: 3%;
   }

@@ -9,7 +9,11 @@
     <title>Visualizza</title>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light navabar">
+<a href="Home.php">       
+    <input type="button"class="btn btn-outline-primary" value="Torna alla pagina principale">  
+    </a>
+</nav>
         <?php
         session_start();
         if(isset($_SESSION['Nome'])){
@@ -43,6 +47,10 @@
                                 <th class="thIS">Indice Sollevamento</th>
                                 <th>Frequenza</th>
                                 <th>Prezzo</th>
+                                <th> PDF</th>
+                                <th>Modifica</th>
+                                <th>Elimina</th>
+                               
                             </tr>';
                             $title=false;
                         }
@@ -59,6 +67,9 @@
                         <td>'.$row['IndiceSollevamento'].'</td>
                         <td>'.$row['FrequenzaGesti'].'</td>
                         <td>'.$row['Prezzo'].'</td>
+                        <td> Visualizza</td>
+                        <td> Modifica</td>
+                        <td> Elimina</td>
                         </tr>';
 
                     }
@@ -70,9 +81,7 @@
             }
         ?>
     </table>
-    <a href="Home.php">
-    <input type="button" value="Torna alla pagina principale">  
-    </a>
+   
    
 </body>
 </html>
