@@ -141,10 +141,60 @@
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <link rel="stylesheet" href="style.css" />
 
+    <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+            
     <title>Nuovo</title>
 </head>
 <body>
-    <form method="POST" >
+    
+<body>
+    <div class="wrapper">
+
+        <form class="p-3 mt-3" method="POST" action="index.php">
+            <div class="form-field d-flex align-items-center">
+                <input name="Nome"        placeholder="Ragione sociale"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="Data"        placeholder="Data" type="date"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="pesoEff"     placeholder="Peso Effettivo (Kg)"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="AltIn"       placeholder="Altezza iniziale (Cm)"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="Data"        placeholder="Data" type="date"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="Data"        placeholder="Data" type="date"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="Data"        placeholder="Data" type="date"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="Data"        placeholder="Data" type="date"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="Data"        placeholder="Data" type="date"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="Data"        placeholder="Data" type="date"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="Data"        placeholder="Data" type="date"><br>
+            </div>
+            <div class="form-field d-flex align-items-center">
+            <input name="Data"        placeholder="Data" type="date"><br>
+            </div>
+
+        </form>
+        <div class="text-center fs-6">
+            <!--<a href="#">Forget password?</a> or <a href="#">Sign up</a>-->
+        </div>
+   
+
    
     <input name="Nome"        placeholder="Ragione sociale"><br>
     <input name="Data"        placeholder="Data" type="date"><br>
@@ -164,7 +214,5 @@
     <input type="button" value="Torna alla pagina principale">  
     </a>
     </form>
-   
-
 </body>
 </html>
