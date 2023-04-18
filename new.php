@@ -139,80 +139,48 @@
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style2.css" />
 
     <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
             
     <title>Nuovo</title>
 </head>
-<body>
     
 <body>
-    <div class="wrapper">
-
-        <form class="p-3 mt-3" method="POST" action="index.php">
-            <div class="form-field d-flex align-items-center">
-                <input name="Nome"        placeholder="Ragione sociale"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="Data"        placeholder="Data" type="date"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="pesoEff"     placeholder="Peso Effettivo (Kg)"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="AltIn"       placeholder="Altezza iniziale (Cm)"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="Data"        placeholder="Data" type="date"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="Data"        placeholder="Data" type="date"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="Data"        placeholder="Data" type="date"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="Data"        placeholder="Data" type="date"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="Data"        placeholder="Data" type="date"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="Data"        placeholder="Data" type="date"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="Data"        placeholder="Data" type="date"><br>
-            </div>
-            <div class="form-field d-flex align-items-center">
-            <input name="Data"        placeholder="Data" type="date"><br>
-            </div>
-
-        </form>
-        <div class="text-center fs-6">
-            <!--<a href="#">Forget password?</a> or <a href="#">Sign up</a>-->
-        </div>
-   
-
-   
-    <input name="Nome"        placeholder="Ragione sociale"><br>
-    <input name="Data"        placeholder="Data" type="date"><br>
-    <input name="pesoEff"     placeholder="Peso Effettivo (Kg)"><br>
-    <input name="AltIn"       placeholder="Altezza iniziale (Cm)"><br>
-    <input name="DistVert"    placeholder="Distanza verticale (Cm)"><br>
-    <input name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"><br>
-    <input name="DistAngo"    placeholder="Distanza angolare"><br>
-    <input name="PresaC"      placeholder="Presa sul carico (Buona/sufficn/scarsa"><br>
-    <input name="PesoMax"     placeholder="Peso massimo"><br>
-    <!--<input name="IndiceSoll"  placeholder="Indice sollevamento"><br>-->
-    <input name="Freq"        placeholder="Frequenza"><br>
-    <input name="Prezzo"      placeholder="Prezzo">  
-    <input name="Durata"      placeholder="Durata">  
-    <button type="submit">REGISTRATI</button>
-    <a href="Home.php">
-    <input type="button" value="Torna alla pagina principale">  
-    </a>
+<nav class="navbar navbar bg-warning">
+    <h1>.</h1>
+        </nav>
+    <div class="form-row">
+    <div class="form-col">
+    <form class="" method="POST" action="index.php">
+       
+    <div class="container">      
+        <input name="Nome"        placeholder="Ragione sociale"><br>
+        <input name="Data"        placeholder="Data" type="date"><br>
+        <input name="pesoEff"     placeholder="Peso Effettivo (Kg)"><br>
+        <input name="AltIn"       placeholder="Altezza iniziale (Cm)"><br>
+        <input name="DistVert"    placeholder="Distanza verticale (Cm)"><br>
+        <input name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"><br>
+        <input name="DistAngo"    placeholder="Distanza angolare"><br>
+        <select name="PresaC">
+            <option value="Buona">Buona</option>
+            <option value="Sufficiente">Sufficiente</option>
+            <option value="Scarsa">Scarsa</option>
+        </select><br>
+        <input name="PesoMax"     placeholder="Peso massimo"><br>
+        <!--<input name="IndiceSoll"  placeholder="Indice sollevamento"><br>-->
+        <input name="Freq"        placeholder="Frequenza"><br>
+        <input name="Prezzo"      placeholder="Prezzo">  <br>
+        <input name="Durata"      placeholder="Durata"> 
+        <button class="btn" type="submit">Crea nuovo DVR</button>
+    
     </form>
+    <a href="Home.php">
+    <button  class="btn">Torna alla pagina principale  </button></a>
+    </div>
+    
+</div>
+</div>
 </body>
 </html>
