@@ -148,12 +148,14 @@
 </head>
     
 <body>
-<nav class="navbar navbar bg-warning">
-    <h1>.</h1>
-        </nav>
+    <nav class="navbar navbar bg-warning ">
+        <a href="Home.php">
+            <button  class="btn2 btn btn-outline-warning">Torna alla pagina principale  </button>
+        </a>
+    </nav>
     <div class="form-row">
     <div class="form-col">
-    <form class="" method="POST" action="index.php">
+    <form class="" method="POST">
        
     <div class="container">      
         <input name="Nome"        placeholder="Ragione sociale"><br>
@@ -173,12 +175,11 @@
         <input name="Freq"        placeholder="Frequenza"><br>
         <input name="Prezzo"      placeholder="Prezzo">  <br>
         <input name="Durata"      placeholder="Durata"> 
-        <button class="btn" type="submit">Crea nuovo DVR</button>
-    
+        <button class="btn1" type="submit">Crea nuovo DVR</button>
     </form>
-    <a href="Home.php">
-    <button  class="btn">Torna alla pagina principale  </button></a>
+    
     </div>
+    
     
 </div>
 </div>
