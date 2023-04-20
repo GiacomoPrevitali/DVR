@@ -5,6 +5,14 @@ function calcola(){
     alert("ciao");
 }
 
+function Modifica(DVR){
+    var table=DVR.getAttribute("data-id");
+    var id=document.getElementById("CodID_"+table).innerHTML;
+
+    return id;
+    alert(table);
+    alert(id);
+}
 /*   
 <input id="pesoEff"     placeholder="Peso Effettivo (Kg)"><br>
 <input id="AltIn"       placeholder="Altezza iniziale (Cm)"><br>

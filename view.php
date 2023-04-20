@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
+    <script type='text/javascript' src='script.js'></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Visualizza</title>
 </head>
@@ -30,6 +31,7 @@
                 $result =$connection->query($sql);
                 if($result->num_rows>0){
                     $title=true;
+                    $i=0;
                     while($row=$result->fetch_assoc()){
                         if($title){
                             echo' <table >
@@ -54,7 +56,8 @@
                             </tr>';
                             $title=false;
                         }
-                        echo '<tr class="row1">  <td>'.$row['Id'].'</td>
+                        echo '<tr Id="CodDVR">  
+                        <td Id="CodID_'.$i.'">'.$row['Id'].'</td>
                         <td>'.$row['Nome'].'</td>
                         <td>'.$row['DataU'].'</td>
                         <td>'.$row['PesoEffettivo'].'</td>
@@ -68,9 +71,13 @@
                         <td>'.$row['FrequenzaGesti'].'</td>
                         <td>'.$row['Prezzo'].'</td>
                         <td> Visualizza</td>
-                        <td> Modifica</td>
+                        
+                        <td data-id="'.$i.'" onclick=Modifica(this);><a href="Modifica.php"> Modifica</a></td>
+                        
                         <td> Elimina</td>
                         </tr>';
+                        $i=$i+1;
+                        
 
                     }
                 }else{
