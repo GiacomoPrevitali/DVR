@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script src="jquery-3.6.4.min.js"></script>
+        <!--<script src="jquery-3.6.4.min.js"></script>-->
         <script type='text/javascript' src='script.js'></script>
         
         <link rel="stylesheet" href="style.css" />
@@ -59,8 +59,8 @@
                 <button type="button" class="btn btn-primary BtnCh">Compila un nuovo DVR</button>
             </a>
             <br>
-            <a href="view.php">
-                <button type="button" class="btn btn-warning BtnCh"id="view">Visualizza</button>
+            <a href="view.html">
+                <button type="button" class="btn btn-warning BtnCh" id="view">Visualizza</button>
             </a>
             <br>
             <a href="logout.php">
