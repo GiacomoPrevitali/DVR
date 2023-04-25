@@ -68,12 +68,19 @@ $(document).ready(function(){
 
 
   $.ajax({    
-    type: "GET",
-    url: "Ajax/QueryDVR.php",             
-    dataType: "json",                 
-    success: function(data){             
-      console.log(data);       
-        $("#table-container").html(data);  
+   // type: "POST",
+    url: "Ajax/AddValutation.php",             
+    dataType: "json",  
+    contentType: "application/json; charset=utf-8",
+    data: {table: "DVR"},        
+    success: function(data){   
+      var i=0;          
+       $.each(data, function (key, value) {
+        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+data[i].PresaCarico+"</td><td>"+data[i].PesoMax+"</td><td>"+data[i].IndiceSollevamento+"</td><td>"+data[i].FrequenzaGesti+"</td><td>"+data[i].Prezzo+"</td><td>Visualizza</td><td>Modifica</td><td>Cancella</td></tr>";
+       
+        i++;
+      })
+        //document.getElementById("table").innerHTML+="<tr><td>"data[i].Id"</td><td>"data[i].Nome"</td></tr>";
     },
     error: function (xhr, ajaxOptions, thrownError) {
       alert(xhr.status);
