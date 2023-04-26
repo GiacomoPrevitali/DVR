@@ -1,8 +1,7 @@
   $.ajax({    
     url: "Ajax/QueryDVR.php",             
     dataType: "json",  
-    contentType: "application/json; charset=utf-8",
-    //data: {table: "DVR"},        
+    contentType: "application/json; charset=utf-8",        
     success: function(data){   
       var i=0;          
        $.each(data, function (key, value) {
@@ -17,7 +16,41 @@
     }
     
 });
+$(document).ready(function() {
+  document.getElementById("sendNew").addEventListener("click", () => {
+    alert("fin qui");
+    $.ajax({ 
+    url: "Ajax/AddValutation.php",             
+    dataType: "json",  
+  // type: "POST",
+    contentType: "application/json; charset=utf-8",
+    data: {
+      Nome: document.getElementById("Nome").value,
+      Data: document.getElementById("Data").value,
+      pesoEff: document.getElementById("pesoEff").value,
+      AltIn: document.getElementById("AltIn").value,
+      DistVer: document.getElementById("DistVert").value,
+      DistOrizz: document.getElementById("DistOrizz").value,
+      DistAngo: document.getElementById("DistAngo").value,
+      PresC: document.getElementById("PresC").value,
+      PesoMax: document.getElementById("PesoMax").value,
+      IndiceSoll: document.getElementById("IndiceSoll").value,
+      Freq: document.getElementById("Freq").value,
+      Prezzo: document.getElementById("Prezzo").value,
+      Durata: document.getElementById("Durata").value,
+    },        
+    success: function(data){   
+      alert("ffsfs");
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      alert(xhr.status);
+      alert(thrownError);
+    }})
+    document.location.href = "Ajax/AddValutation.php";
+  });
+});
 
+/*
 function Update(Id){
   $.ajax({
     url: "Ajax/Update.php",             
@@ -37,7 +70,7 @@ function Update(Id){
       IndiceSoll: document.getElementById("IndiceSoll").value,
       Freq: document.getElementById("Freq").value,
       Prezzo: document.getElementById("Prezzo").value,
-      Durata: document.getElementById("Durata").value*/
+      Durata: document.getElementById("Durata").value
     },        
     success: function(data){   
 
@@ -48,40 +81,7 @@ function Update(Id){
     }})
     //document.location.href = "Ajax/Update.php";
 //document.location.href = "Modifica.html";
-}
+}*/
 
 
-const element = document.getElementById("sendNew");
-element.addEventListener("click", () => {
-  alert("ciao");  
-  document.location.href = "Ajax/AddValutation.php";
-  $.ajax({ 
-  url: "Ajax/AddValutation.php",             
-  dataType: "json",  
-  type: "POST",
-  contentType: "application/json; charset=utf-8",
-  data: {
-    Nome: document.getElementById("Nome").value,
-    Data: document.getElementById("Data").value,
-    pesoEff: document.getElementById("pesoEff").value,
-    AltIn: document.getElementById("AltIn").value,
-    DistVer: document.getElementById("DistVer").value,
-    DistOrizz: document.getElementById("DistOrizz").value,
-    DistAngo: document.getElementById("DistAngo").value,
-    PresC: document.getElementById("PresC").value,
-    PesoMax: document.getElementById("PesoMax").value,
-    IndiceSoll: document.getElementById("IndiceSoll").value,
-    Freq: document.getElementById("Freq").value,
-    Prezzo: document.getElementById("Prezzo").value,
-    Durata: document.getElementById("Durata").value
-  },        
-  success: function(data){   
-    alert(data);
-  },
-  error: function (xhr, ajaxOptions, thrownError) {
-    alert(xhr.status);
-    alert(thrownError);
-  }})
-  
-});
 

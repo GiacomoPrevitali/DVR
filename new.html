@@ -24,29 +24,30 @@
     </nav>
     <div class="form-row">
     <div class="form-col">
-    <form class="" method="POST" >
+    <form class=""  method="POST">
        
     <div class="container">      
-        <input id="Nome" name="Nome"        placeholder="Ragione sociale"><br>
-        <input id="Data" name="Data"        placeholder="Data" type="date"><br>
-        <input id="pesoEff" name="pesoEff"     placeholder="Peso Effettivo (Kg)"><br>
-        <input id="AltIn"name="AltIn"       placeholder="Altezza iniziale (Cm)"><br>
-        <input id="DistVert"name="DistVert"    placeholder="Distanza verticale (Cm)"><br>
-        <input id="DistOrizz" name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"><br>
-        <input id="DistAngo" name="DistAngo"    placeholder="Distanza angolare"><br>
-        <select id="PresaC" name="PresaC">
+        <input id="Nome"        name="Nome"        placeholder="Ragione sociale"            required><br>
+        <input id="Data"        name="Data"        placeholder="Data" type="date"           required><br>
+        <input id="pesoEff"     name="pesoEff"     placeholder="Peso Effettivo (Kg)"        required><br>
+        <input id="AltIn"       name="AltIn"       placeholder="Altezza iniziale (Cm)"      required><br>
+        <input id="DistVert"    name="DistVert"    placeholder="Distanza verticale (Cm)"    required><br>
+        <input id="DistOrizz"   name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"  required><br>
+        <input id="DistAngo"    name="DistAngo"    placeholder="Distanza angolare"          required><br>
+        <select id="PresaC"     name="PresaC">
             <option value="Buona">Buona</option>
             <option value="Sufficiente">Sufficiente</option>
             <option value="Scarsa">Scarsa</option>
         </select><br>
-        <input id="PesoMax" name="PesoMax"     placeholder="Peso massimo"><br>
-        <input id="IndiceSoll" name="IndiceSoll"  placeholder="Indice sollevamento"><br>
-        <input id="Freq" name="Freq"        placeholder="Frequenza"><br>
-        <input id="Prezzo" name="Prezzo"      placeholder="Prezzo">  <br>
-        <input id="Durata" name="Durata"      placeholder="Durata"> 
+        <input id="PesoMax"     name="PesoMax"          placeholder="Peso massimo"          required><br>
+        <input id="IndiceSoll"  name="IndiceSoll"    placeholder="Indice sollevamento"      required><br>
+        <input id="Freq"        name="Freq"                placeholder="Frequenza"          required><br>
+        <input id="Prezzo"      name="Prezzo"            placeholder="Prezzo"               required><br>
+        <input id="Durata"      name="Durata"            placeholder="Durata"               required> 
       <!--  <button id="sendNew" class="btn1" >Crea nuovo DVR</button>-->
+      <button id="sendNew" class="btn1" type="submit" >Crea nuovo DVR</button>
     </form>
-    <button id="sendNew" class="btn1" >Crea nuovo DVR</button>
+    
     </div>
 </div>
 </div>
