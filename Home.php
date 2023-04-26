@@ -55,7 +55,7 @@
         </div>
 
             <br>
-            <a href="new.php">
+            <a href="new.html">
                 <button type="button" class="btn btn-primary BtnCh">Compila un nuovo DVR</button>
             </a>
             <br>
