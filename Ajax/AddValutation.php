@@ -81,7 +81,7 @@
         }else if($_REQUEST['DistAngo']>135){
             $DistanzaAngolare=0;
         }
-            echo $_REQUEST['Nome'];
+            
         //FATTORE PRESA
         switch($_REQUEST['PresaC']){
             case "Buona":

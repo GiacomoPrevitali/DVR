@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo $_REQUEST['Nome'];
 require_once('config.php');
 
 $sql ='SELECT * FROM documento WHERE Id="'.$_REQUEST['Id'].'"';
