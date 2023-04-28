@@ -1,17 +1,20 @@
 <?php
 session_start();
-echo $_REQUEST['Nome'];
+if(isset($_POST['Id'])){
+    $Id=$_POST['Id'];
+    echo json_encode(array('message' => $Id));
 require_once('config.php');
 
-$sql ='SELECT * FROM documento WHERE Id="'.$_REQUEST['Id'].'"';
+$sql ='SELECT * FROM documento WHERE Id_Operatore="'.$_SESSION['Id'].'"';
 $result =$connection->query($sql);
 $json=array();
 if($result->num_rows>0){
     while($row=mysqli_fetch_assoc($result)){
-        echo $row;
+      
         array_push($json,$row);
     }
     
 }
 echo json_encode($json);
+}
 ?>

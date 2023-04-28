@@ -10,78 +10,67 @@
         i++;
       })
     },
-    error: function (xhr, ajaxOptions, thrownError) {
+    error: function (data, xhr, ajaxOptions, thrownError) {
+      console.log(data)
       alert(xhr.status);
       alert(thrownError);
     }
     
 });
 $(document).ready(function() {
-  document.getElementById("sendNew").addEventListener("click", () => {
-    alert("fin qui");
+  document.getElementById("form1").addEventListener("submit", (e) => {
+    //e.preventDefault();
     $.ajax({ 
-    url: "Ajax/AddValutation.php",             
+    url: "Ajax/AddValutation.php",  
+    type: "POST",           
     dataType: "json",  
-  // type: "POST",
-    contentType: "application/json; charset=utf-8",
     data: {
       Nome: document.getElementById("Nome").value,
-      Data: document.getElementById("Data").value,
+      DataVal: document.getElementById("Data").value,
       pesoEff: document.getElementById("pesoEff").value,
       AltIn: document.getElementById("AltIn").value,
-      DistVer: document.getElementById("DistVert").value,
+      DistVert: document.getElementById("DistVert").value,
       DistOrizz: document.getElementById("DistOrizz").value,
       DistAngo: document.getElementById("DistAngo").value,
-      PresC: document.getElementById("PresC").value,
-      PesoMax: document.getElementById("PesoMax").value,
-      IndiceSoll: document.getElementById("IndiceSoll").value,
-      Freq: document.getElementById("Freq").value,
-      Prezzo: document.getElementById("Prezzo").value,
-      Durata: document.getElementById("Durata").value,
-    },        
-    success: function(data){   
-      alert("ffsfs");
-    },
-    error: function (xhr, ajaxOptions, thrownError) {
-      alert(xhr.status);
-      alert(thrownError);
-    }})
-    document.location.href = "Ajax/AddValutation.php";
-  });
-});
-
-/*
-function Update(Id){
-  $.ajax({
-    url: "Ajax/Update.php",             
-    dataType: "json",  
-    type: "POST",
-    contentType: "application/json; charset=utf-8",
-    data: {
-      /*Nome: document.getElementById("Id").value,
-      Data: document.getElementById("Data").value,
-      pesoEff: document.getElementById("pesoEff").value,
-      AltIn: document.getElementById("AltIn").value,
-      DistVer: document.getElementById("DistVer").value,
-      DistOrizz: document.getElementById("DistOrizz").value,
-      DistAngo: document.getElementById("DistAngo").value,
-      PresC: document.getElementById("PresC").value,
+      PresaC: document.getElementById("PresaC").value,
       PesoMax: document.getElementById("PesoMax").value,
       IndiceSoll: document.getElementById("IndiceSoll").value,
       Freq: document.getElementById("Freq").value,
       Prezzo: document.getElementById("Prezzo").value,
       Durata: document.getElementById("Durata").value
-    },        
+    },      
     success: function(data){   
+      console.log("dati salvati");
+    },
+    error: function (data) {
+      console.log(data);
+    }})
+  });
+});
+
+function Update(Id){
+  //alert(Id);
+  $.ajax({
+    url: "Ajax/Update.php",
+    type: "POST",             
+    dataType: "json",  
+    data: {
+      Id: Id
+    },        
+    success: function(data){  
+      console.log("ciap"+data);
+       document.location.href = "new.html";
+       document.getElementById("Nome").value=data[0].Nome;
 
     },
-    error: function (xhr, ajaxOptions, thrownError) {
-      alert(xhr.status);
-      alert(thrownError);
+    error: function (data, xhr, ajaxOptions, thrownError) {
+      console.log(data);
+      console.log(xhr.status);
+      console.log(thrownError);
     }})
     //document.location.href = "Ajax/Update.php";
 //document.location.href = "Modifica.html";
-}*/
+}
 
 
 
