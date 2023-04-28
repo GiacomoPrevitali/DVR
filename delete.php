@@ -15,6 +15,8 @@
        $sql ='DELETE FROM documento WHERE Id="'.$_GET['Id'].'"';
        $result =$connection->query($sql);
 
+       $DataVal=$_POST['Id'];
+       echo json_encode(array('message' => $DataVal));
 
 
 ?>

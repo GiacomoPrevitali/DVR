@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['Id'])){
     $Id=$_POST['Id'];
-    echo json_encode(array('message' => $Id));
+   // echo json_encode(array('message' => $Id));
 require_once('config.php');
 
 $sql ='SELECT * FROM documento WHERE Id="'.$Id.'"';
