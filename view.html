@@ -6,12 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="npm i bootstrap@5.3.0-alpha3" real="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style3.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+
     <title>Visualizza</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type='text/javascript' src='script.js'></script>
 </head>
 <body>
+    
+
+    <!--<button type="button" class=" btn btn-outline-success BtnAccount" data-bs-toggle="modal" data-bs-target="#exampleModal">Account</button>-->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="update">
+                    <input id="Nome1"        name="Nome"        placeholder="Ragione sociale"            required><br>
+                    <input id="Data1"        name="Data"        placeholder="Data" type="date"           required><br>
+                    <input id="pesoEff1"     name="pesoEff"     placeholder="Peso Effettivo (Kg)"        required><br>
+                    <input id="AltIn1"       name="AltIn"       placeholder="Altezza iniziale (Cm)"      required><br>
+                    <input id="DistVert1"    name="DistVert"    placeholder="Distanza verticale (Cm)"    required><br>
+                    <input id="DistOrizz1"   name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"  required><br>
+                    <input id="DistAngo1"    name="DistAngo"    placeholder="Distanza angolare"          required><br>
+                    <select id="PresaC1"     name="PresaC">
+                        <option value="Buona">Buona</option>
+                        <option value="Sufficiente">Sufficiente</option>
+                        <option value="Scarsa">Scarsa</option>
+                    </select><br>
+                    <input id="PesoMax1"     name="PesoMax"          placeholder="Peso massimo"          required><br>
+                    <input id="IndiceSoll1"  name="IndiceSoll"    placeholder="Indice sollevamento"      required><br>
+                    <input id="Freq1"        name="Freq"                placeholder="Frequenza"          required><br>
+                    <input id="Prezzo1"      name="Prezzo"            placeholder="Prezzo"               required><br>
+                    <input id="Durata1"      name="Durata"            placeholder="Durata"               required> 
+                    <div class="modal-footer">
+                        <button id="ButtUpdate" type="button" class="btn btn-success" data-bs-dismiss="modal">Modifica</button>
+                    </div>
+                </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+   
     <a href="Home.php">
     <input type="button"class="btn btn-outline-primary" id="view"  value="Torna alla pagina principale"> 
     </a>
@@ -38,5 +87,6 @@
                 <th>Elimina</th>                            
             </tr>
         </thead>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

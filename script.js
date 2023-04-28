@@ -51,16 +51,39 @@ $(document).ready(function() {
 function Update(Id){
   //alert(Id);
   $.ajax({
-    url: "Ajax/Update.php",
+    url: "Ajax/AddValutation.php",
     type: "POST",             
     dataType: "json",  
     data: {
       Id: Id
     },        
     success: function(data){  
-      console.log("ciap"+data);
-       document.location.href = "new.html";
-       document.getElementById("Nome").value=data[0].Nome;
+      $('#exampleModal').modal('show');
+      console.log(data[0].Nome);
+      //document.getElementById("Nome1").innerHTML=data[0].Nome;
+      $("#Nome1").val(data[0].Nome);
+      $("#Data1").val(data[0].DataU);
+      $("#pesoEff1").val(data[0].pesoEffettivo);
+      $("#AltIn1").val(data[0].AltezzaIniziale);
+      $("#DistVert1").val(data[0].DistanzaVerticale);
+      $("#DistOrizz1").val(data[0].DistanzaOrizzontale);
+      $("#DistAngo1").val(data[0].DistanzaAngolare);
+      if(data[0].PresaCarico=="2"){
+        $("#PresaC1").val("Buona");
+      }else if(data[0].PresaCarico=="1"){
+        $("#PresaC1").val("Sufficiente");
+      }else{
+        $("#PresaC1").val("Scarsa");
+      }
+      $("#PesoMax1").val(data[0].PesoMax);
+      $("#IndiceSoll1").val(data[0].IndiceSollevamento);
+      $("#Freq1").val(data[0].FrequenzaGesti);
+      $("#Prezzo1").val(data[0].Prezzo);
+      $("#Durata1").val(data[0].Durata);
+
+      //document.getElementById("Nome").value=data[0].Nome;
+       //document.location.href = "new.html";
+       
 
     },
     error: function (data, xhr, ajaxOptions, thrownError) {
@@ -72,5 +95,35 @@ function Update(Id){
 //document.location.href = "Modifica.html";
 }
 
-
+/*$(document).ready(function() {
+  document.getElementById("ButtUpdate").addEventListener("submit", (e) => {
+    //e.preventDefault();
+    $.ajax({ 
+    url: "Ajax/Update.php",  
+    type: "POST",           
+    dataType: "json",  
+    data: {
+      Id: document.getElementById("Id1").value,
+      Nome: document.getElementById("Nome1").value,
+      DataVal: document.getElementById("Data1").value,
+      pesoEff: document.getElementById("pesoEff1").value,
+      AltIn: document.getElementById("AltIn1").value,
+      DistVert: document.getElementById("DistVert1").value,
+      DistOrizz: document.getElementById("DistOrizz1").value,
+      DistAngo: document.getElementById("DistAngo1").value,
+      PresaC: document.getElementById("PresaC1").value,
+      PesoMax: document.getElementById("PesoMax1").value,
+      IndiceSoll: document.getElementById("IndiceSoll1").value,
+      Freq: document.getElementById("Freq1").value,
+      Prezzo: document.getElementById("Prezzo1").value,
+      Durata: document.getElementById("Durata1").value
+    },      
+    success: function(data){   
+      console.log("dati salvati");
+    },
+    error: function (data) {
+      console.log(data);
+    }})
+  });
+});*/
 
