@@ -93,7 +93,7 @@ if(isset($_SESSION['Nome'])){
           break;
       }
 
-
+            echo $_REQUEST['Freq'];
       switch($_REQUEST['Freq']){
          case "0,20 gesti/minuto":
                switch($_REQUEST['Durata']){

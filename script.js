@@ -7,6 +7,7 @@
     success: function(data){   
       var i=0;          
        $.each(data, function (key, value) {
+
         document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+data[i].PresaCarico+"</td><td>"+data[i].PesoMax+"</td><td>"+data[i].IndiceSollevamento+"</td><td>"+data[i].FrequenzaGesti+"</td><td>"+data[i].Prezzo+"</td><td>"+data[i].Validità+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
        
         i++;
@@ -23,7 +24,7 @@
 //NUOVE VALUTAZIONI
 $(document).ready(function() {
   document.getElementById("form1").addEventListener("submit", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     $.ajax({ 
     url: "Ajax/AddValutation.php",  
     type: "POST",           

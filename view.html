@@ -41,15 +41,29 @@
                         <input id="DistOrizz1"   name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"  required><br>
                         <input id="DistAngo1"    name="DistAngo"    placeholder="Distanza angolare"          required><br>
                         <select id="PresaC1"     name="PresaC">
+                            <option value="" disabled selected>Presa sul carico</option>
                             <option value="Buona">Buona</option>
-                            <option value="Sufficiente">Sufficiente</option>
                             <option value="Scarsa">Scarsa</option>
                         </select><br>
                         <input id="PesoMax1"     name="PesoMax"          placeholder="Peso massimo"          required><br>
-                        <input id="IndiceSoll1"  name="IndiceSoll"    placeholder="Indice sollevamento"      required><br>
-                        <input id="Freq1"        name="Freq"                placeholder="Frequenza"          required><br>
+                       <!-- <input id="IndiceSoll1"  name="IndiceSoll"    placeholder="Indice sollevamento"      required><br>-->
+                       <select id="Freq1"     name="Freq" >
+                        <option value="" disabled selected>Frequenza</option>
+                        <option value="0,20">0,20 gesti/minuto</option>
+                        <option value="1">1 gesti/minuto</option>
+                        <option value="4">4 gesti/minuto</option>
+                        <option value="6">6 gesti/minuto</option>
+                        <option value="9">9 gesti/minuto</option>
+                        <option value="12">12 gesti/minuto</option>
+                        <option value=">15">>15 gesti/minuto</option>
+                    </select><br>
                         <input id="Prezzo1"      name="Prezzo"            placeholder="Prezzo"               required><br>
-                        <input id="Durata1"      name="Durata"            placeholder="Durata"               required> 
+                        <select id="Durata"     name="PresaC">
+                            <option value="" disabled selected>Durata</option>
+                            <option value="-1">< 1 ora</option>
+                            <option value="1-2"> da 1 a 2 ore</option>
+                            <option value="2-8"> da 2 a 8 ore</option>
+                        </select><br> 
                         <div class="modal-footer">
                             <!--<button id="ButtUpdate" type="submit" class="btn btn-success" data-bs-dismiss="modal">Salva</button>-->
                             <button id="ButtUpdate" type="submit">Salva</button>
