@@ -6,29 +6,23 @@
     dataType: "json",  
     contentType: "application/json; charset=utf-8",        
     success: function(data){   
-
-
-      
-
-
-
-
       var i=0;          
        $.each(data, function (key, value) {
         var val="";
+        var val1="";
+        if(data[i].PresaCarico=="1"){
+          val1="Buona";
+        }else{
+          val1="Scarsa";
+        }
         if(data[i].Validità=="1"){
           val="Valido";
-        //document.getElementById("").style.color="green";
         }else{
           val="Non Valido";
-         // document.getElementById("table").style.color="red";
         }
-        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+data[i].PresaCarico+"</td><td>"+data[i].PesoMax+"</td><td>"+data[i].IndiceSollevamento+"</td><td>"+data[i].FrequenzaGesti+"</td><td>"+data[i].Prezzo+"</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
-       
+        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+data[i].PesoMax+"</td><td>"+data[i].IndiceSollevamento+"</td><td>"+data[i].FrequenzaGesti+"</td><td>"+data[i].Prezzo+"</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
         i++;
-
         var tds = document.getElementsByTagName("td");
-
         for(var h = 0, j = tds.length; h < j; h++){
           if(tds[h].innerHTML=="Valido"){
             tds[h].style.color = "green";
@@ -38,10 +32,6 @@
             document.getElementById("table").style.border="1px solid black";
           }
         }
-
-        
-
-
       })
     },
     error: function (data, xhr, ajaxOptions, thrownError) {
@@ -55,7 +45,6 @@
 //NUOVE VALUTAZIONI
 $(document).ready(function() {
   document.getElementById("form1").addEventListener("submit", (e) => {
-    //e.preventDefault();
     $.ajax({ 
     url: "Ajax/AddValutation.php",  
     type: "POST",           
@@ -69,8 +58,6 @@ $(document).ready(function() {
       DistOrizz: document.getElementById("DistOrizz").value,
       DistAngo: document.getElementById("DistAngo").value,
       PresaC: document.getElementById("PresaC").value,
-      PesoMax: document.getElementById("PesoMax").value,
-      //IndiceSoll: document.getElementById("IndiceSoll").value,
       Freq: document.getElementById("Freq").value,
       Prezzo: document.getElementById("Prezzo").value,
       Durata: document.getElementById("Durata").value
@@ -88,7 +75,6 @@ $(document).ready(function() {
 //CARICAMENTO DATI NELLA MODALE
 function Update(Idi){
   Id=Idi;
-  //alert(Id);
   $.ajax({
     url: "Ajax/Update.php",
     type: "POST",             
@@ -106,18 +92,14 @@ function Update(Idi){
       $("#DistVert1").val(data[0].DistanzaVerticale);
       $("#DistOrizz1").val(data[0].DistanzaOrizzontale);
       $("#DistAngo1").val(data[0].DistanzaAngolare);
-      if(data[0].PresaCarico=="2"){
-        $("#PresaC1").val("Buona");
-      }else if(data[0].PresaCarico=="1"){
-        $("#PresaC1").val("Sufficiente");
+      if(data[0].PresaCarico=="1"){
+        $("#PresaC1").val(data[0].PresaCarico);
       }else{
-        $("#PresaC1").val("Scarsa");
+        $("#PresaC1").val(0);
       }
-      $("#PesoMax1").val(data[0].PesoMax);
-      $("#IndiceSoll1").val(data[0].IndiceSollevamento);
       $("#Freq1").val(data[0].FrequenzaGesti);
       $("#Prezzo1").val(data[0].Prezzo);
-      $("#Durata1").val(data[0].Durata);
+      $('#Durata1').val(data[0].Durata)
     },
     error: function (data, xhr, ajaxOptions, thrownError) {
       console.log(data);
@@ -144,8 +126,6 @@ $(document).ready(function() {
       DistOrizz: document.getElementById("DistOrizz1").value,
       DistAngo: document.getElementById("DistAngo1").value,
       PresaC: document.getElementById("PresaC1").value,
-      PesoMax: document.getElementById("PesoMax1").value,
-      IndiceSoll: document.getElementById("IndiceSoll1").value,
       Freq: document.getElementById("Freq1").value,
       Prezzo: document.getElementById("Prezzo1").value,
       Durata: document.getElementById("Durata1").value

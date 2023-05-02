@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['Nome'])){
    if(isset($_POST['Nome'])){
-      $KpesoNIOSH=23;
+      $KpesoNIOSH=20;
       $AltezzaTerra=0;
       $FattorePresa=1;
       $DistanzaOrizzontale=0;
@@ -85,103 +85,102 @@ if(isset($_SESSION['Nome'])){
 
      //GIUDIZIO SUL PESO
      switch($_REQUEST['PresaC']){
-      case "Buona":
-          $FrequenzaMinuto=1;
+      case "1":
+          $FattorePresa=1;
           break;
-      case "Scarsa":
-          $FrequenzaMinuto=0.90;
+      case "0":
+          $FattorePresa=0.90;
           break;
       }
 
-            echo $_REQUEST['Freq'];
       switch($_REQUEST['Freq']){
-         case "0,20 gesti/minuto":
+         case "20":
                switch($_REQUEST['Durata']){
-                  case "< 1 ora":
-                        $FattorePresa=1;
+                  case "1":
+                        $FrequenzaMinuto=1;
                         break;
-                  case "da 1 a 2 ore":
-                        $FattorePresa=0.95;
+                  case "2":
+                        $FrequenzaMinuto=0.95;
                         break;
-                  case "da 1 a 2 ore":
-                        $FattorePresa=0.85;
+                  case "8":
+                        $FrequenzaMinuto=0.85;
                         break;
                   }
                break;
-         case "1 gesti/minuto":
+         case "1":
                switch($_REQUEST['Durata']){
-                  case "< 1 ora":
+                  case "1":
                         $FrequenzaMinuto=0.94;
                         break;
-                  case "da 1 a 2 ore":
+                  case "2":
                         $FrequenzaMinuto=0.88;
                         break;
-                  case "da 1 a 2 ore":
+                  case "8":
                         $FrequenzaMinuto=0.75;
                         break;
                   }
                break;
-         case "4 gesti/minuto":
+         case "4":
                switch($_REQUEST['Durata']){
-                  case "< 1 ora":
+                  case "1":
                         $FrequenzaMinuto=0.84;
                         break;
-                  case "da 1 a 2 ore":
+                  case "2":
                         $FrequenzaMinuto=0.72;
                         break;
-                  case "da 1 a 2 ore":
+                  case "8":
                         $FrequenzaMinuto=0.45;
                         break;
                   }
                break;
-         case "6 gesti/minuto":
+         case "6":
                switch($_REQUEST['Durata']){
-                  case "< 1 ora":
+                  case "1":
                         $FrequenzaMinuto=0.75;
                         break;
-                  case "da 1 a 2 ore":
+                  case "2":
                         $FrequenzaMinuto=0.5;
                         break;
-                  case "da 1 a 2 ore":
+                  case "8":
                         $FrequenzaMinuto=0.27;
                         break;
                   }
                break;
-         case "9 gesti/minuto":
+         case "9":
                switch($_REQUEST['Durata']){
-                  case "< 1 ora":
+                  case "1":
                         $FrequenzaMinuto=0.52;
                         break;
-                  case "da 1 a 2 ore":
+                  case "2":
                         $FrequenzaMinuto=0.3;
                         break;
-                  case "da 1 a 2 ore":
+                  case "8":
                         $FrequenzaMinuto=0.52;
                         break;
                   }
                break;
-         case "12 gesti/minuto":
+         case "12":
                switch($_REQUEST['Durata']){
-                  case "< 1 ora":
+                  case "1":
                         $FrequenzaMinuto=0.37;
                         break;
-                  case "da 1 a 2 ore":
+                  case "2":
                         $FrequenzaMinuto=0.21;
                         break;
-                  case "da 1 a 2 ore":
+                  case "8":
                         $FrequenzaMinuto=0;
                         break;
                   }
                break;
-         case "15 gesti/minuto":
+         case "15":
                switch($_REQUEST['Durata']){
-                  case "< 1 ora":
+                  case "1":
                         $FrequenzaMinuto=0;
                         break;
-                  case "da 1 a 2 ore":
+                  case "2":
                         $FrequenzaMinuto=0;
                         break;
-                  case "da 1 a 2 ore":
+                  case "8":
                         $FrequenzaMinuto=0;
                         break;
                   }
@@ -189,14 +188,11 @@ if(isset($_SESSION['Nome'])){
       }
 
       $DataVal=$_POST['DataVal'];
-      echo json_encode(array('message' => $DataVal));
+      echo json_encode(array('message' => $KpesoNIOSH, $AltezzaTerra, $DistanzaOrizzontale,$DistanzaVerticale, $DistanzaAngolare, $FattorePresa, $FrequenzaMinuto ));
    
       
 
         $PesoRaccomandato=$KpesoNIOSH*$AltezzaTerra*$DistanzaOrizzontale* $DistanzaVerticale*$DistanzaAngolare*$FattorePresa*$FrequenzaMinuto;
-        //echo $PesoRaccomandato;
-        //$PesoRaccomandato=1;
-       // echo $_REQUEST['pesoEff'];
         if($PesoRaccomandato!=0){
          $IndiceSollevamento=$_REQUEST['pesoEff']/$PesoRaccomandato;
         }else{
@@ -206,7 +202,7 @@ if(isset($_SESSION['Nome'])){
        
         require_once('config.php');
        
-         $sql='INSERT INTO documento (Id,Id_Operatore, Nome, DataU, PesoEffettivo, AltezzaIniziale, DistanzaVerticale, DistanzaOrizzontale, DistanzaAngolare, PresaCarico, PesoMax, IndiceSollevamento, FrequenzaGesti, Prezzo,Durata, Validità) VALUES (NULL,"'.$_SESSION['Id'].'", "'.$_REQUEST['Nome'].'", "'.$_REQUEST['DataVal'].'", "'.$_REQUEST['pesoEff'].'", "'.$_REQUEST['AltIn'].'", "'.$_REQUEST['DistVert'].'", "'.$_REQUEST['DistOrizz'].'", "'.$_REQUEST['DistAngo'].'", "'.$_REQUEST['PresaC'].'", "'. $PesoRaccomandato.'", "'.$IndiceSollevamento.'", "'.$_REQUEST['Freq'].'", "'.$_REQUEST['Prezzo'].'","'.$_REQUEST['Durata'].'",1)';
+         $sql='INSERT INTO documento (Id,Id_Operatore, Nome, DataU, PesoEffettivo, AltezzaIniziale, DistanzaVerticale, DistanzaOrizzontale, DistanzaAngolare, PresaCarico, PesoMax, IndiceSollevamento, FrequenzaGesti, Prezzo,Durata, Validità) VALUES (NULL,"'.$_SESSION['Id'].'", "'.$_REQUEST['Nome'].'", "'.$_REQUEST['DataVal'].'", "'.$_REQUEST['pesoEff'].'", "'.$_REQUEST['AltIn'].'", "'.$_REQUEST['DistVert'].'", "'.$_REQUEST['DistOrizz'].'", "'.$_REQUEST['DistAngo'].'", "'.$FattorePresa.'", "'. $PesoRaccomandato.'", "'.$IndiceSollevamento.'", "'.$_REQUEST['Freq'].'", "'.$_REQUEST['Prezzo'].'","'.$_REQUEST['Durata'].'",1)';
          $result =$connection->query($sql);
 
    }

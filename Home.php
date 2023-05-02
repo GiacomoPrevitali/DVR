@@ -39,8 +39,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <?php 
-                            echo    '<p>Nome: '.$_SESSION['Nome'].'</p>
+                        <?=   '<p>Nome: '.$_SESSION['Nome'].'</p>
                                     <p>Cognome: '.$_SESSION['Cognome'].'</p>
                                     <p>Username: '.$_SESSION['Username'].'</p>'
                                     
