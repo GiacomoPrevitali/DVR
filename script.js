@@ -20,16 +20,19 @@
         }else{
           val="Non Valido";
         }
-        
+        var IndiceSollevamento;
         if(data[i].FrequenzaGesti=="20"){
           freq="0.20";
         }else{
           freq=data[i].FrequenzaGesti;
         }
-        var IndiceSollevamento=Math.round(data[i].IndiceSollevamento * 100) / 100;
+        if(data[i].IndiceSollevamento=="-1"){
+          IndiceSollevamento="Non Calcolabile";
+        }
+        IndiceSollevamento=Math.round(data[i].IndiceSollevamento * 100) / 100;
         var Pesolimte=Math.round(data[i].PesoMax * 100) / 100
         //document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+Pesolimte  +"</td><td>"+IndiceSollevamento+"</td><td>"+freq+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
-        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td>"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
+        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td>"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><tdonclick='Update("+data[i].Id+","+data[i].Validità+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
         
         i++;
         var tds = document.getElementsByTagName("td");
@@ -61,6 +64,7 @@ $(document).ready(function() {
     type: "POST",           
     dataType: "json",  
     data: {
+      Update: "1",
       Nome: document.getElementById("Nome").value,
       DataVal: document.getElementById("Data").value,
       pesoEff: document.getElementById("pesoEff").value,
@@ -84,7 +88,8 @@ $(document).ready(function() {
 
 
 //CARICAMENTO DATI NELLA MODALE
-function Update(Idi){
+function Update(Idi,V){
+  if(V=="1"){
   Id=Idi;
   $.ajax({
     url: "Ajax/Update.php",
@@ -117,6 +122,14 @@ function Update(Idi){
       console.log(xhr.status);
       console.log(thrownError);
     }})
+  }else{
+    document.getElementById('alert').hidden=false;
+    setTimeout(
+      function() {
+      console.log("run");
+      document.getElementById('alert').hidden=true;
+      }, 2000);
+  }
 }
 
 
@@ -124,10 +137,11 @@ function Update(Idi){
 $(document).ready(function() {
   document.getElementById("ModificaDati").addEventListener("submit", (e) => {
     $.ajax({ 
-    url: "Ajax/Update2.php",  
+    url: "Ajax/AddValutation.php",  
     type: "POST",           
     dataType: "json",  
     data: {
+      Update: "0",
       Id: Id,
       Nome: document.getElementById("Nome1").value,
       DataVal: document.getElementById("Data1").value,

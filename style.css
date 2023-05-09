@@ -149,9 +149,11 @@ table {
     border-bottom: 1px solid black;
     padding: 5px;
   }
-/*.TitleTable{
-  background-color: #039BE5;
-}*/
+
+.Mod{
+  color: blue;
+  text-decoration: underline;
+}
 .navbar{
 background-color: red;
 }
