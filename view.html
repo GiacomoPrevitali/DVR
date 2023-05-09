@@ -45,8 +45,6 @@
                             <option value="1">Buona</option>
                             <option value="0">Scarsa</option>
                         </select><br>
-                       <!-- <input id="PesoMax1"     name="PesoMax"          placeholder="Peso massimo"          required><br>-->
-                       <!-- <input id="IndiceSoll1"  name="IndiceSoll"    placeholder="Indice sollevamento"      required><br>-->
                        <select id="Freq1"     name="Freq" >
                         <option value="" disabled selected>Frequenza</option>
                         <option value="20">0,20 gesti/minuto</option>
@@ -65,9 +63,89 @@
                             <option value="8"> da 2 a 8 ore</option>
                         </select><br> 
                         <div class="modal-footer">
-                            <!--<button id="ButtUpdate" type="submit" class="btn btn-success" data-bs-dismiss="modal">Salva</button>-->
-                            <button id="ButtUpdate" type="submit">Salva</button>
-                        </div>
+                            <button id="ButtUpdate" type="submit" class="btn btn-success" data-bs-dismiss="modal">Salva</button>
+                           <!-- <button id="ButtUpdate" type="submit">Salva</button>-->
+                        </div> 
+
+
+
+
+
+
+
+
+                        <!--<div class="form-floating mb-3">
+                          <input id="Nome"        name="Nome"        placeholder="Ragione sociale"                                    class="form-control"    required><br>
+                          <label for="floatingInput">Ragione Sociale</label>  
+                      </div>
+                      <div class="form-floating mb-3">
+                          <input id="Prezzo"      name="Prezzo"      placeholder="Prezzo"                     type="number" min="0"   class="form-control"    required><br>
+                          <label for="floatingInput">Prezzo</label> 
+                      </div>
+                          <input id="Data"        name="Data"        placeholder="Data"                       type="date"                                     required><br>
+                      <div class="form-floating mb-3">
+                          <input id="pesoEff"     name="pesoEff"     placeholder="Peso Effettivo (Kg)"        type="number" min="0"   class="form-control"    required><br>
+                          <label for="floatingInput">Peso Effettivo (Kg)</label>  
+                      </div>
+                      <div class="form-floating mb-3">
+                          <input id="AltIn"       name="AltIn"       placeholder="Altezza Iniziale (Cm)"      type="number" min="0"   class="form-control"   required><br>
+                          <label for="floatingInput">Altezza Iniziale (Cm)</label>  
+                      </div>
+                      <div class="form-floating mb-3">
+                          <input id="DistVert"    name="DistVert"    placeholder="Distanza Verticale (Cm)"    type="number" min="0"   class="form-control"   required><br>
+                          <label for="floatingInput">Distanza Verticale (Cm)</label>  
+                      </div>
+                      <div class="form-floating mb-3">
+                          <input id="DistOrizz"   name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"  type="number" min="0"   class="form-control"   required><br>
+                          <label for="floatingInput">Distanza orizzontale (Cm)</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                          <input id="DistAngo"    name="DistAngo"    placeholder="Distanza angolare "          type="number" min="0"   class="form-control"   required><br>
+                          <label for="floatingInput">Distanza angolare </label>
+                      </div>
+                      <select id="PresaC"     name="PresaC" required>
+                          <option value="" disabled selected>Presa sul carico</option>
+                          <option value="1">Buona</option>
+                          <option value="0">Scarsa</option>
+                      </select><br>
+                      <input id="PesoMax"     name="PesoMax"          placeholder="Peso massimo"          required><br>
+                      <select id="Freq"     name="Freq" required >
+                          <option value="" disabled selected>Frequenza</option>
+                          <option value="20">0,20 gesti/minuto</option>
+                          <option value="1">1 gesti/minuto</option>
+                          <option value="4">4 gesti/minuto</option>
+                          <option value="6">6 gesti/minuto</option>
+                          <option value="9">9 gesti/minuto</option>
+                          <option value="12">12 gesti/minuto</option>
+                          <option value="15">>15 gesti/minuto</option>
+                      </select><br>
+                      <select id="Durata"     name="PresaC" required>
+                          <option value="" disabled selected>Durata</option>
+                          <option value="1">< 1 ora</option>
+                          <option value="2"> da 1 a 2 ore</option>
+                          <option value="8"> da 2 a 8 ore</option>
+                      </select><br>
+                      <div class="modal-footer">
+                        <button id="ButtUpdate" type="submit" class="btn btn-success" data-bs-dismiss="modal">Salva</button>
+                        <button id="ButtUpdate" type="submit">Salva</button>
+                    </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </form>
                 </div>
                 </div>
@@ -125,11 +203,15 @@
                 <th>Elimina</th>                           
             </tr>
         </thead>
-        </table>
+      </table>
 <br>
         <div class="alert alert-danger" role="alert" id="alert" hidden>
             Non puoi modificare una valutazione non valida
           </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+          <div class="alert alert-danger" role="alert" id="alert1" hidden>
+            Non puoi stampare una valutazione non valida
+          </div>
+          <script src="fpdf/fpdf.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>
