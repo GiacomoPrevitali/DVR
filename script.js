@@ -1,6 +1,6 @@
   //VIEW
   var Id;
-
+  var freq;
   $.ajax({    
     url: "Ajax/QueryDVR.php",             
     dataType: "json",  
@@ -20,7 +20,17 @@
         }else{
           val="Non Valido";
         }
-        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+data[i].PesoMax+"</td><td>"+data[i].IndiceSollevamento+"</td><td>"+data[i].FrequenzaGesti+"</td><td>"+data[i].Prezzo+"</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
+        
+        if(data[i].FrequenzaGesti=="20"){
+          freq="0.20";
+        }else{
+          freq=data[i].FrequenzaGesti;
+        }
+        var IndiceSollevamento=Math.round(data[i].IndiceSollevamento * 100) / 100;
+        var Pesolimte=Math.round(data[i].PesoMax * 100) / 100
+        //document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+Pesolimte  +"</td><td>"+IndiceSollevamento+"</td><td>"+freq+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
+        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td>"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
+        
         i++;
         var tds = document.getElementsByTagName("td");
         for(var h = 0, j = tds.length; h < j; h++){
@@ -45,6 +55,7 @@
 //NUOVE VALUTAZIONI
 $(document).ready(function() {
   document.getElementById("form1").addEventListener("submit", (e) => {
+   //e.preventDefault();
     $.ajax({ 
     url: "Ajax/AddValutation.php",  
     type: "POST",           

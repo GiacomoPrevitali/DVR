@@ -11,8 +11,7 @@ $json=array();
 if($result->num_rows>0){
     while($row=mysqli_fetch_assoc($result)){
         array_push($json,$row);
-    }
-    
+    } 
 }
 echo json_encode($json);
 }

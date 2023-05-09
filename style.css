@@ -133,36 +133,36 @@ padding: 40px 15px 15px 15px;
 
 
 table {
-    border:1px solid;
-    width: 90%;
-    height:auto;
+    
+  width: 90%;
+    /*height:auto;*/
     border-collapse: collapse;
     margin-left: 5%;
     margin-right: 5%;
     font-size: 15px;
     table-layout:auto;   
-  }
-  tr{
-    border:1px solid;
-  }
-  table tr td , table tr th {
-    border:1px solid;
     text-align: center;
   }
-.TitleTable{
+  
+  table tr td , table tr th {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 5px;
+  }
+/*.TitleTable{
   background-color: #039BE5;
-}
+}*/
 .navbar{
 background-color: red;
 }
   .thID{
-    width: 3%;
+    width: 4%;
   }
   .thNA{
-    width: 6%;
+    width: 15%;
   }
   .thDA{
-    width: 7%;
+    width: 15%;
   }
 
   .thDO{
@@ -174,9 +174,9 @@ background-color: red;
   .thAN{
     width: 8%;
   }
-  .thIS{
+  /*.thIS{
     width: 8%;
-  }
+  }*/
   .row1{
     height: 30px;
   }

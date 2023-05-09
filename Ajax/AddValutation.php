@@ -188,23 +188,22 @@ if(isset($_SESSION['Nome'])){
       }
 
       $DataVal=$_POST['DataVal'];
-      echo json_encode(array('message' => $KpesoNIOSH, $AltezzaTerra, $DistanzaOrizzontale,$DistanzaVerticale, $DistanzaAngolare, $FattorePresa, $FrequenzaMinuto ));
+     
    
-      
-
-        $PesoRaccomandato=$KpesoNIOSH*$AltezzaTerra*$DistanzaOrizzontale* $DistanzaVerticale*$DistanzaAngolare*$FattorePresa*$FrequenzaMinuto;
+      $PesoRaccomandato=$KpesoNIOSH*$AltezzaTerra*$DistanzaOrizzontale* $DistanzaVerticale*$DistanzaAngolare*$FattorePresa*$FrequenzaMinuto;
+      //if($PesoRaccomandato!=0){
         if($PesoRaccomandato!=0){
-         $IndiceSollevamento=$_REQUEST['pesoEff']/$PesoRaccomandato;
-        }else{
-         $IndiceSollevamento=-1;
+            $IndiceSollevamento=$_REQUEST['pesoEff']/$PesoRaccomandato;
+            }else{
+            $IndiceSollevamento=-1;
         }
        // $IndiceSollevamento=$pesoEff/$PesoRaccomandato;
-       
+     // }
         require_once('config.php');
        
          $sql='INSERT INTO documento (Id,Id_Operatore, Nome, DataU, PesoEffettivo, AltezzaIniziale, DistanzaVerticale, DistanzaOrizzontale, DistanzaAngolare, PresaCarico, PesoMax, IndiceSollevamento, FrequenzaGesti, Prezzo,Durata, Validità) VALUES (NULL,"'.$_SESSION['Id'].'", "'.$_REQUEST['Nome'].'", "'.$_REQUEST['DataVal'].'", "'.$_REQUEST['pesoEff'].'", "'.$_REQUEST['AltIn'].'", "'.$_REQUEST['DistVert'].'", "'.$_REQUEST['DistOrizz'].'", "'.$_REQUEST['DistAngo'].'", "'.$FattorePresa.'", "'. $PesoRaccomandato.'", "'.$IndiceSollevamento.'", "'.$_REQUEST['Freq'].'", "'.$_REQUEST['Prezzo'].'","'.$_REQUEST['Durata'].'",1)';
          $result =$connection->query($sql);
-
+         echo json_encode(array('message' => $KpesoNIOSH, $AltezzaTerra, $DistanzaOrizzontale,$DistanzaVerticale, $DistanzaAngolare, $FattorePresa, $FrequenzaMinuto ));
    }
 }else{
    header("Location: index.php?error");
