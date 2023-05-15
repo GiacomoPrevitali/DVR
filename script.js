@@ -6,7 +6,11 @@
     dataType: "json",  
     contentType: "application/json; charset=utf-8",        
     success: function(data){   
-      var i=0;          
+      var i=0;       
+      if(data.length==0){
+          document.getElementById("table").hidden=true;
+          document.getElementById("NoVal").hidden=false;
+        }  
        $.each(data, function (key, value) {
         var val="";
         var val1="";
@@ -34,8 +38,11 @@
         }
         var Pesolimte=Math.round(data[i].PesoMax * 100) / 100;
         
+        
         //document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+Pesolimte  +"</td><td>"+IndiceSollevamento+"</td><td>"+freq+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
-        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td onclick='createPDF("+data[i].Id+","+data[i].Validità+")'>Visualizza</td><td onclick='Update("+data[i].Id+","+data[i].Validità+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
+
+        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'>Visualizza</a></td><td onclick='Update("+data[i].Id+","+data[i].Validità+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
+
         
         i++;
         var tds = document.getElementsByTagName("td");
@@ -93,6 +100,7 @@ $(document).ready(function() {
 });
 
 
+
 //CARICAMENTO DATI NELLA MODALE
 function Update(Idi,V){
   if(V=="1"){
@@ -121,7 +129,8 @@ function Update(Idi,V){
       }
       $("#Freq1").val(data[0].FrequenzaGesti);
       $("#Prezzo1").val(data[0].Prezzo);
-      $('#Durata1').val(data[0].Durata)
+      $('#Durata1').val(data[0].Durata);
+
     },
     error: function (data, xhr, ajaxOptions, thrownError) {
       console.log(data);
@@ -142,7 +151,7 @@ function Update(Idi,V){
 //MODIFICA DATI
 $(document).ready(function() {
   document.getElementById("ModificaDati").addEventListener("submit", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     $.ajax({ 
     url: "Ajax/AddValutation.php",  
     type: "POST",           
@@ -223,36 +232,12 @@ function createPDF(Idi,V){
         Id: Id
       },        
       success: function(data){  
-        //$('#exampleModal').modal('show');
-       /* console.log(data[0].Nome);
-        $("#Nome1").val(data[0].Nome);
-        $("#Data1").val(data[0].DataU);
-        $("#pesoEff1").val(data[0].PesoEffettivo);
-        $("#AltIn1").val(data[0].AltezzaIniziale);
-        $("#DistVert1").val(data[0].DistanzaVerticale);
-        $("#DistOrizz1").val(data[0].DistanzaOrizzontale);
-        $("#DistAngo1").val(data[0].DistanzaAngolare);
-        if(data[0].PresaCarico=="1"){
-          $("#PresaC1").val(data[0].PresaCarico);
-        }else{
-          $("#PresaC1").val(0);
-        }
-        $("#Freq1").val(data[0].FrequenzaGesti);
-        $("#Prezzo1").val(data[0].Prezzo);
-        $('#Durata1').val(data[0].Durata)*/
-        //PDFdata(data);
         console.log(data);
-
-        window.open('Ajax/PDF.php');
-
-
-
-
-
+       // window.open('Ajax/PDF.php');
       },
       error: function (data, xhr, ajaxOptions, thrownError) {
         console.log(data);
-        window.open('Ajax/PDF.php');
+        //window.open('Ajax/PDF.php');
       }})
     }else{
       document.getElementById('alert1').hidden=false;

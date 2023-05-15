@@ -27,6 +27,7 @@
                         header("Location: index.php?error");
                     }
             ?>
+             
             <button type="button" class=" btn btn-outline-success BtnAccount" data-bs-toggle="modal" data-bs-target="#exampleModal">Account</button>
         </nav>
 
@@ -38,6 +39,7 @@
                         <h5 class="modal-title" id="exampleModalLabel">Account</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    
                     <div class="modal-body">
                         <?=   '<p>Nome: '.$_SESSION['Nome'].'</p>
                                     <p>Cognome: '.$_SESSION['Cognome'].'</p>
@@ -58,8 +60,12 @@
                 <button type="button" class="btn btn-primary BtnCh">Compila un nuovo DVR</button>
             </a>
             <br>
-            <a href="view.html">
+            <a href="view.php">
                 <button type="button" class="btn btn-warning BtnCh" id="view">Visualizza</button>
+            </a>
+            <br>
+            <a href="singup.html">
+                <button type="button" class="btn btn-info BtnCh" id="new">Nuovo Utente</button>
             </a>
             <br>
             <a href="logout.php">

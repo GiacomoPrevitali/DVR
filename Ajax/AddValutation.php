@@ -193,9 +193,13 @@ if(isset($_SESSION['Nome'])){
       $PesoRaccomandato=$KpesoNIOSH*$AltezzaTerra*$DistanzaOrizzontale* $DistanzaVerticale*$DistanzaAngolare*$FattorePresa*$FrequenzaMinuto;
       $valido="1";
       //if($PesoRaccomandato!=0){
-        if($PesoRaccomandato!=0){
+        if($PesoRaccomandato!=0 ){
             $IndiceSollevamento=$_REQUEST['pesoEff']/$PesoRaccomandato;
             }else{
+            $IndiceSollevamento=-1;
+            $valido="0";
+        }
+        if($_REQUEST['pesoEff']>=30){
             $IndiceSollevamento=-1;
             $valido="0";
         }

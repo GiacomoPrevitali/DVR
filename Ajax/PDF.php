@@ -1,37 +1,68 @@
 <?php
 session_start();
-//if(isset($_POST['Id'])){
-    echo "ciaso";
-    $Id=$_POST['Id'];
-   // echo json_encode(array('message' => $Id));
-require_once('config.php');
+ob_start();
 require('../fpdf/fpdf.php');
-
-$sql ='SELECT * FROM documento WHERE Id="'.$Id.'"';
-$result =$connection->query($sql);
-/*//$json=array();
-//$pdf = new FPDF();
-
-//$pdf->AddPage();
-//$pdf->SetFont('Arial', 'B', 16);
+require_once('config.php');
+    $id = $_POST['Id'];
+    //echo $_POST['Id'];
+$sql ='SELECT * FROM documento WHERE Id ="'.$_POST['Id'].'"';
+$result = $connection->query($sql);
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc(); 
 $pdf = new FPDF();
+$pdf->SetTitle('PDF');
+$pdf->SetAuthor('Creator');
 $pdf->AddPage();
-$pdf->SetFont('Arial','B',16);
-if($result->num_rows>0){
-    while($row=mysqli_fetch_assoc($result)){
-        
-        $pdf->Cell(190, 40, "Ragione sociale: dsd", 1, 1, 'C');
-
-        //array_push($json,$row);
-    } 
-}*/
-
-$pdf = new FPDF();
-
-$pdf->AddPage();
-$pdf->SetFont('Arial', 'B', 16);
-
-$pdf->Cell(40,10,'Ciao, quest il tuo PDF!');
-$pdf->Output();
-//}
+$pdf->SetFont('Arial','B',22);
+$pdf->Cell(0, 20, 'Movimentazione manuale dei carichi', 0, 1, 'C');
+$pdf->Ln(5);
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(40,10,'ID valutazione:',0,0);
+$pdf->Cell(40,10,$row['Id'],0,0);
+$pdf->Ln();
+$pdf->Ln();
+$pdf->Cell(40,10,'Ragione sociale:',0,0);
+$pdf->Cell(40,10,$row['Nome'],0,0);
+$pdf->Ln();
+$pdf->Cell(40,10,'Data:',0,0);
+$pdf->Cell(40,10,$row['DataU'],0,0);
+    $pdf->Ln(15);
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(0, 10, 'Dettagli valutazione:', 0, 1, 'C');
+    $pdf->Ln();
+    $pdf->SetFont('Arial','B',12,);
+    $descrizioni = array(
+        'Peso effettivo: '.$row['PesoEffettivo'].' Kg',
+        'Altezza iniziale: '.$row['AltezzaIniziale'].' cm',
+        'Distanza verticale: '.$row['DistanzaVerticale'].' cm',
+        'Distanza orizzontale: '.$row['DistanzaOrizzontale'].' cm',
+        'Dislocazione angolare: '.$row['DistanzaAngolare'],
+        'Presa: '.$row['PresaCarico'],
+        'Frequenza '.$row['FrequenzaGesti'].' (al minuto)',
+        'Tempo: '.$row['Durata'].' (ore)',
+        'Validità: '.$row['Validità'],
+        'Peso raccomandato: '.$row['PesoMax'].' Kg',
+        'Indice sollevamento: '.$row['IndiceSollevamento'],
+        //'Esito: '.$row['esito'],
+        'Prezzo: '.$row['Prezzo'].'€'
+    );
+$max_rows = 8;
+$col_width = $pdf->GetPageWidth() / 2 - 5;
+$row_height = 10;
+for ($row = 0; $row < $max_rows; $row++) {
+    for ($col = 0; $col < 2; $col++) {
+        $index = $row * 2 + $col;
+        if ($index >= count($descrizioni)) {
+            break;
+        }
+        $x = $col * $col_width + 5;
+        $y = $pdf->GetY();
+        $pdf->SetXY($x, $y);
+        $pdf->SetFillColor(200, 230, 255);
+        $pdf->MultiCell($col_width, $row_height, $descrizioni[$index], 1, 'C', true);
+    }
+}
+        $pdf->Output();
+        ob_end_flush();
+}
 ?>
