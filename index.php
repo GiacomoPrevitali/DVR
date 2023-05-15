@@ -66,6 +66,9 @@
                     $_SESSION['Cognome']=$row['Cognome'];
                     $_SESSION['Permessi']=$row['Permesso'];
                     $_SESSION['Username']=$row['Username'];
+                    $_SESSION['Permesso']=$row['Permesso'];
+                    $_SESSION['Ragione']=$row['RagioneSociale'];
+                    
                 
                  header("Location: Home.php");
                  /*echo $_SESSION['Id'];

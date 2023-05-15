@@ -29,6 +29,17 @@ body {
 background: #ecf0f3;
 
 }
+
+img{
+  width: 30px;
+  height: 30px;
+}
+
+img:hover{
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
 .wrapper {
 max-width: 350px;
 min-height: 45%;

@@ -1,11 +1,41 @@
   //VIEW
   var Id;
   var freq;
+  var IdUtente;
+  var lunghezza;
+  function VerUtente(Id){
+    IdUtente=Id;
+    if(Id=="0"){
+      document.getElementById("NuovoDVR").hidden=false;
+      document.getElementById("NuovoUtente").hidden=true;
+      document.getElementById("ViewDVR").hidden=true;
+    }else if(Id=="2"){
+      document.getElementById("NuovoDVR").hidden=true;
+      document.getElementById("NuovoUtente").hidden=true;
+      document.getElementById("ViewDVR").hidden=false;
+      Image.hidden=true;
+      document.getElementById("table").innerHTML-="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/PDF.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/Modifca.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/X.jpg' ></td></tr>"; 
+      alert(lunghezza);
+      for(var i=0; i<=lunghezza;i++){
+        document.getElementById("modifica"+i).hidden=true;
+        document.getElementById("elimina"+i).hidden=true;
+      }
+    }else{
+      document.getElementById("NuovoDVR").hidden=false;
+      document.getElementById("NuovoUtente").hidden=false;
+      document.getElementById("ViewDVR").hidden=false;
+    }
+  
+  }
+
   $.ajax({    
     url: "Ajax/QueryDVR.php",             
     dataType: "json",  
     contentType: "application/json; charset=utf-8",        
-    success: function(data){   
+    success: function(data){
+      lunghezza=data.length;
+      console.log(data);
+     // alert(IdUtente);   
       var i=0;       
       if(data.length==0){
           document.getElementById("table").hidden=true;
@@ -37,13 +67,10 @@
           
         }
         var Pesolimte=Math.round(data[i].PesoMax * 100) / 100;
-        
-        
         //document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+Pesolimte  +"</td><td>"+IndiceSollevamento+"</td><td>"+freq+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
-
-        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'>Visualizza</a></td><td onclick='Update("+data[i].Id+","+data[i].Validità+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
-
         
+        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/PDF.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/Modifca.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/X.jpg' ></td></tr>";
+      
         i++;
         var tds = document.getElementsByTagName("td");
         for(var h = 0, j = tds.length; h < j; h++){
@@ -98,6 +125,34 @@ $(document).ready(function() {
     }})
   });
 });
+
+
+$(document).ready(function() {
+  document.getElementById("formUtente").addEventListener("submit", (e) => {
+   //e.preventDefault();
+    $.ajax({ 
+    url: "Ajax/AddUser.php",  
+    type: "POST",           
+    dataType: "json",  
+    data: {
+      Update: "1",
+      Nome: document.getElementById("NomeUser").value,
+      Cognome: document.getElementById("CognomeUser").value,
+      Username: document.getElementById("UsernameUser").value,
+      Password: document.getElementById("PasswordUser").value,
+      Permessi: document.getElementById("PermessiUser").value,
+      Ragione: document.getElementById("RagioneUser").value,
+    },      
+    success: function(data){   
+      console.log("dati salvati");
+    },
+    error: function (data) {
+      console.log(data);
+    }})
+  });
+});
+
+
 
 
 
@@ -248,5 +303,6 @@ function createPDF(Idi,V){
         }, 3000);
     }
 }
+
 
 

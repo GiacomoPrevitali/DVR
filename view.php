@@ -77,11 +77,12 @@ for ($row = 0; $row < $max_rows; $row++) {
         }
         $x = $col * $col_width + 5;
         $y = $pdf->GetY();
-        $pdf->SetXY($x, $y);
-        $pdf->SetFillColor(200, 230, 255);
-        $pdf->MultiCell($col_width, $row_height, $descrizioni[$index], 1, 'C', true);
+        $pdf->SetXY(10, $y);
+        $pdf->SetFillColor(255, 255, 255);
+        $pdf->MultiCell($col_width+90, $row_height, $descrizioni[$index], 1, 'C', true);
     }
 }
+
         $pdf->Output();
         ob_end_flush();
 }else{
@@ -115,7 +116,7 @@ for ($row = 0; $row < $max_rows; $row++) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type='text/javascript' src='script.js'></script>
 </head>
-<body>
+<body onload=VerUtente("<?php echo $_SESSION['Permesso']; ?>");>
     
 
     <!--<button type="button" class=" btn btn-outline-success BtnAccount" data-bs-toggle="modal" data-bs-target="#exampleModal">Account</button>-->
@@ -128,47 +129,6 @@ for ($row = 0; $row < $max_rows; $row++) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!--<form id="ModificaDati" method="POST">
-                        <input id="Nome1"        name="Nome"        placeholder="Ragione sociale"            required><br>
-                        <input id="Data1"        name="Data"        placeholder="Data" type="date"           required><br>
-                        <input id="pesoEff1"     name="pesoEff"     placeholder="Peso Effettivo (Kg)"        required><br>
-                        <input id="AltIn1"       name="AltIn"       placeholder="Altezza iniziale (Cm)"      required><br>
-                        <input id="DistVert1"    name="DistVert"    placeholder="Distanza verticale (Cm)"    required><br>
-                        <input id="DistOrizz1"   name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"  required><br>
-                        <input id="DistAngo1"    name="DistAngo"    placeholder="Distanza angolare"          required><br>
-                        <select id="PresaC1"     name="PresaC">
-                            <option value="" disabled selected>Presa sul carico</option>
-                            <option value="1">Buona</option>
-                            <option value="0">Scarsa</option>
-                        </select><br>
-                       <select id="Freq1"     name="Freq" >
-                        <option value="" disabled selected>Frequenza</option>
-                        <option value="20">0,20 gesti/minuto</option>
-                        <option value="1">1 gesti/minuto</option>
-                        <option value="4">4 gesti/minuto</option>
-                        <option value="6">6 gesti/minuto</option>
-                        <option value="9">9 gesti/minuto</option>
-                        <option value="12">12 gesti/minuto</option>
-                        <option value="15">>15 gesti/minuto</option>
-                    </select><br>
-                        <input id="Prezzo1"      name="Prezzo"            placeholder="Prezzo"               required><br>
-                        <select id="Durata1"     name="Durata">
-                            <option value="" disabled selected>Durata</option>
-                            <option value="1">< 1 ora</option>
-                            <option value="2"> da 1 a 2 ore</option>
-                            <option value="8"> da 2 a 8 ore</option>
-                        </select><br> 
-                        <div class="modal-footer">
-                            <button id="ButtUpdate" type="submit" class="btn btn-success" data-bs-dismiss="modal">Salva</button>
-                            <button id="ButtUpdate" type="submit">Salva</button>
-                        </div>-->
-
-
-
-
-
-
-
                         <form id="ModificaDati" method="POST">
                         <div class="form-floating mb-3">
                           <input id="Nome1"        name="Nome"        placeholder="Ragione sociale"                                    class="form-control"    required><br>
@@ -260,6 +220,7 @@ for ($row = 0; $row < $max_rows; $row++) {
     </a>
     <br>
     <div id="table-container"></div>
+    <br>
     <table id="table" >
         <thead>
             <tr class="TitleTable bg-primary">

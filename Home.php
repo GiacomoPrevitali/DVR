@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,11 +19,11 @@
 
         <title>Home</title>
     </head>
-    <body>
+    <body onload=VerUtente("<?php echo $_SESSION['Permesso']; ?>");>
 
         <nav class="navbar navbar bg-dark">
             <?php
-                session_start();
+                
                     if(isset($_SESSION['Nome'])){
                         echo '<h3 class="Name"> Ciao, '. $_SESSION['Nome'].' '.$_SESSION['Cognome'].'</h3>';
                    
@@ -57,20 +61,21 @@
 
             <br>
             <a href="new.html">
-                <button type="button" class="btn btn-primary BtnCh">Compila un nuovo DVR</button>
+                <button type="button" id="NuovoDVR" class="btn btn-primary BtnCh">Compila un nuovo DVR</button>
             </a>
             <br>
-            <a href="view.php">
-                <button type="button" class="btn btn-warning BtnCh" id="view">Visualizza</button>
+            <a href="view.php" id="viewHome">
+                <button type="button" class="btn btn-warning BtnCh"  id="viewDVR">Visualizza</button>
             </a>
-            <br>
-            <a href="singup.html">
-                <button type="button" class="btn btn-info BtnCh" id="new">Nuovo Utente</button>
-            </a>
+          
             <br>
             <a href="logout.php">
                 <button type="button" class="btn btn-danger BtnCh">Logout</button>
-            </a><br>
+            </a>
+            <br>
+            <a href="singup.html">
+                <button type="button" class="btn btn-info BtnCh" id="NuovoUtente">Nuovo Utente</button>
+            </a>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
 </html>
