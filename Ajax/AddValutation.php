@@ -9,10 +9,33 @@ if(isset($_SESSION['Nome'])){
       $DistanzaVerticale=0;
       $DistanzaAngolare=0;
       $FrequenzaMinuto=0;
-
-
       //ALTEZZA DA TERRA
-      if($_REQUEST['AltIn']>=0 AND $_REQUEST['AltIn']<25){
+      switch($_REQUEST['AltIn']){
+            case 0:
+                  $AltezzaTerra=0.77;
+                  break;
+            case 25:
+                  $AltezzaTerra=0.85;
+                  break;
+            case 50:
+                  $AltezzaTerra=0.93;
+                  break;
+            case 75:
+                  $AltezzaTerra=1;
+                  break;
+            case 100:
+                  $AltezzaTerra=0.93;
+                  break;
+            case 125:
+                  $AltezzaTerra=0.85;
+                  break;
+            case 150:
+                  $AltezzaTerra=0.78;
+                  break; 
+            case 175:
+                  $AltezzaTerra=0;
+                  break;      
+      }     
                $AltezzaTerra=0.77;
          }else if($_REQUEST['AltIn']>=25 AND $_REQUEST['AltIn']<50){
                $AltezzaTerra=0.85;
@@ -28,7 +51,7 @@ if(isset($_SESSION['Nome'])){
                $AltezzaTerra=0.77;
          }else if($_REQUEST['AltIn']>=175){
                $AltezzaTerra=0;
-         }
+         }*/
 
        //DISTANZA VERTICALE
        if($_REQUEST['DistVert']>=0 AND $_REQUEST['DistVert']<25 ){
@@ -49,41 +72,180 @@ if(isset($_SESSION['Nome'])){
                $DistanzaVerticale=0;
          }
 
+     //DISTANZA VERTICALE
+     switch($_REQUEST['DistVert']){
+            case 25:
+                  $DistanzaOrizzontale=1;
+                  break;
+            case 30:
+              $DistanzaOrizzontale=0.97;
+              break;
+            case 40:
+                  $DistanzaOrizzontale=0.93;
+                  break;
+            case 50:
+                  $DistanzaOrizzontale=0.91;
+                  break;
+            case 70:
+                  $DistanzaOrizzontale=0.88;
+                  break;
+            case 100:
+                  $DistanzaOrizzontale=0.87;
+                  break;
+            case 150:
+                  $DistanzaOrizzontale=0.86;
+                  break;
+            case 175:
+                  $DistanzaOrizzontale=0;
+                  break;
+     }
      //DISTANZA ORIZZONTALE
-     if($_REQUEST['DistOrizz']>=0 AND $_REQUEST['DistOrizz']<25 ){
-            $DistanzaOrizzontale=1;
-      }else if($_REQUEST['DistOrizz']>=25 AND $_REQUEST['DistOrizz']<30){
-            $DistanzaOrizzontale=0.83;
-      }else if($_REQUEST['DistOrizz']>=30 AND $_REQUEST['DistOrizz']<40){
-            $DistanzaOrizzontale=0.63;
-      }else if($_REQUEST['DistOrizz']>=40 AND $_REQUEST['DistOrizz']<50){
-            $DistanzaOrizzontale=0.50;
-      }else if($_REQUEST['DistOrizz']>=50 AND $_REQUEST['DistOrizz']<55 ){
-            $DistanzaOrizzontale=0.45;
-      }else if($_REQUEST['DistOrizz']>=55 AND $_REQUEST['DistOrizz']<60){
-            $DistanzaOrizzontale=0.42;
-      }else if($_REQUEST['DistOrizz']>=60){
-            $DistanzaOrizzontale=0;
+     switch($_REQUEST['DistOrizz']){
+            case 25:
+                  $DistanzaOrizzontale=1;
+                  break;
+            case 30:
+                  $DistanzaOrizzontale=0.83;
+                  break;
+            case 40:
+                  $DistanzaOrizzontale=0.63;
+                  break;
+            case 50:
+                  $DistanzaOrizzontale=0.50;
+                  break;
+            case 55:
+                  $DistanzaOrizzontale=0.45;
+                  break;
+            case 60:
+                  $DistanzaOrizzontale=0.42;
+                  break;
+            case 63:
+                  $DistanzaOrizzontale=0;
+                  break;
       }
 
+
       //DISTANZA ANGOLARE
-      if($_REQUEST['DistAngo']>=0 AND $_REQUEST['DistAngo']<30 ){
-         $DistanzaAngolare=1;
-     }else if($_REQUEST['DistAngo']>=30 AND $_REQUEST['DistAngo']<60){
-         $DistanzaAngolare=0.9;
-     }else if($_REQUEST['DistAngo']>=60 AND $_REQUEST['DistAngo']<90){
-         $DistanzaAngolare=0.81;
-     }else if($_REQUEST['DistAngo']>=90 AND $_REQUEST['DistAngo']<120){
-         $DistanzaAngolare=0.71;
-     }else if($_REQUEST['DistAngo']>=120 AND $_REQUEST['DistAngo']<135 ){
-         $DistanzaAngolare=0.52;
-     }else if($_REQUEST['DistAngo']==135){
-         $DistanzaAngolare=0.57;
-     }else if($_REQUEST['DistAngo']>135){
-         $DistanzaAngolare=0;
-     }
+      switch($_REQUEST['DistAngo']){
+            case 0:
+                  $DistanzaAngolare=1;
+                  break;
+            case 30:
+                  $DistanzaAngolare=0.9;
+                  break;
+            case 60:
+                  $DistanzaAngolare=0.81;
+                  break;
+            case 90:
+                  $DistanzaAngolare=0.71;
+                  break;
+            case 120:
+                  $DistanzaAngolare=0.52;
+                  break;
+            case 135:
+                  $DistanzaAngolare=0.57;
+                  break;
+            case 136:
+                  $DistanzaAngolare=0;
+                  break;
+      }
+
+
 
      //GIUDIZIO SUL PESO
+     switch($_REQUEST['Freq']){
+      case "20":
+            switch($_REQUEST['Durata']){
+               case "1":
+                     $FrequenzaMinuto=1;
+                     break;
+               case "2":
+                     $FrequenzaMinuto=0.95;
+                     break;
+               case "8":
+                     $FrequenzaMinuto=0.85;
+                     break;
+               }
+            break;
+      case "1":
+            switch($_REQUEST['Durata']){
+               case "1":
+                     $FrequenzaMinuto=0.94;
+                     break;
+               case "2":
+                     $FrequenzaMinuto=0.88;
+                     break;
+               case "8":
+                     $FrequenzaMinuto=0.75;
+                     break;
+               }
+            break;
+      case "4":
+            switch($_REQUEST['Durata']){
+               case "1":
+                     $FrequenzaMinuto=0.84;
+                     break;
+               case "2":
+                     $FrequenzaMinuto=0.72;
+                     break;
+               case "8":
+                     $FrequenzaMinuto=0.45;
+                     break;
+               }
+            break;
+      case "6":
+            switch($_REQUEST['Durata']){
+               case "1":
+                     $FrequenzaMinuto=0.75;
+                     break;
+               case "2":
+                     $FrequenzaMinuto=0.5;
+                     break;
+               case "8":
+                     $FrequenzaMinuto=0.27;
+                     break;
+               }
+            break;
+      case "9":
+            switch($_REQUEST['Durata']){
+               case "1":
+                     $FrequenzaMinuto=0.52;
+                     break;
+               case "2":
+                     $FrequenzaMinuto=0.3;
+                     break;
+               case "8":
+                     $FrequenzaMinuto=0.52;
+                     break;
+               }
+            break;
+      case "12":
+            switch($_REQUEST['Durata']){
+               case "1":
+                     $FrequenzaMinuto=0.37;
+                     break;
+               case "2":
+                     $FrequenzaMinuto=0.21;
+                     break;
+               case "8":
+                     $FrequenzaMinuto=0;
+                     break;
+               }
+            break;
+      case "15":
+            switch($_REQUEST['Durata']){
+               case "1":
+                     $FrequenzaMinuto=0;
+                     break;
+               case "2":
+                     $FrequenzaMinuto=0;
+                     break;
+               case "8":
+                     $FrequenzaMinuto=0;
+                     break;
+               }
+            break;
+   }
      switch($_REQUEST['PresaC']){
       case "1":
           $FattorePresa=1;
@@ -93,99 +255,7 @@ if(isset($_SESSION['Nome'])){
           break;
       }
 
-      switch($_REQUEST['Freq']){
-         case "20":
-               switch($_REQUEST['Durata']){
-                  case "1":
-                        $FrequenzaMinuto=1;
-                        break;
-                  case "2":
-                        $FrequenzaMinuto=0.95;
-                        break;
-                  case "8":
-                        $FrequenzaMinuto=0.85;
-                        break;
-                  }
-               break;
-         case "1":
-               switch($_REQUEST['Durata']){
-                  case "1":
-                        $FrequenzaMinuto=0.94;
-                        break;
-                  case "2":
-                        $FrequenzaMinuto=0.88;
-                        break;
-                  case "8":
-                        $FrequenzaMinuto=0.75;
-                        break;
-                  }
-               break;
-         case "4":
-               switch($_REQUEST['Durata']){
-                  case "1":
-                        $FrequenzaMinuto=0.84;
-                        break;
-                  case "2":
-                        $FrequenzaMinuto=0.72;
-                        break;
-                  case "8":
-                        $FrequenzaMinuto=0.45;
-                        break;
-                  }
-               break;
-         case "6":
-               switch($_REQUEST['Durata']){
-                  case "1":
-                        $FrequenzaMinuto=0.75;
-                        break;
-                  case "2":
-                        $FrequenzaMinuto=0.5;
-                        break;
-                  case "8":
-                        $FrequenzaMinuto=0.27;
-                        break;
-                  }
-               break;
-         case "9":
-               switch($_REQUEST['Durata']){
-                  case "1":
-                        $FrequenzaMinuto=0.52;
-                        break;
-                  case "2":
-                        $FrequenzaMinuto=0.3;
-                        break;
-                  case "8":
-                        $FrequenzaMinuto=0.52;
-                        break;
-                  }
-               break;
-         case "12":
-               switch($_REQUEST['Durata']){
-                  case "1":
-                        $FrequenzaMinuto=0.37;
-                        break;
-                  case "2":
-                        $FrequenzaMinuto=0.21;
-                        break;
-                  case "8":
-                        $FrequenzaMinuto=0;
-                        break;
-                  }
-               break;
-         case "15":
-               switch($_REQUEST['Durata']){
-                  case "1":
-                        $FrequenzaMinuto=0;
-                        break;
-                  case "2":
-                        $FrequenzaMinuto=0;
-                        break;
-                  case "8":
-                        $FrequenzaMinuto=0;
-                        break;
-                  }
-               break;
-      }
+      
 
       $DataVal=$_POST['DataVal'];
      
