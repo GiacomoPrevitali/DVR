@@ -14,7 +14,7 @@
       document.getElementById("NuovoUtente").hidden=true;
       document.getElementById("ViewDVR").hidden=false;
       Image.hidden=true;
-      document.getElementById("table").innerHTML-="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/PDF.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/Modifca.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/X.jpg' ></td></tr>"; 
+      document.getElementById("table").innerHTML-="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/PDF.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/Modifca.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/X.png' ></td></tr>"; 
       alert(lunghezza);
       for(var i=0; i<=lunghezza;i++){
         document.getElementById("modifica"+i).hidden=true;
@@ -119,6 +119,7 @@ $(document).ready(function() {
     },      
     success: function(data){   
       console.log("dati salvati");
+      document.location.href="Home.php"
     },
     error: function (data) {
       console.log(data);
@@ -158,7 +159,7 @@ $(document).ready(function() {
 
 //CARICAMENTO DATI NELLA MODALE
 function Update(Idi,V){
-  if(V=="1"){
+  //if(V=="1"){
   Id=Idi;
   $.ajax({
     url: "Ajax/Update.php",
@@ -192,14 +193,7 @@ function Update(Idi,V){
       console.log(xhr.status);
       console.log(thrownError);
     }})
-  }else{
-    document.getElementById('alert').hidden=false;
-    setTimeout(
-      function() {
-      console.log("run");
-      document.getElementById('alert').hidden=true;
-      }, 3000);
-  }
+
 }
 
 
@@ -277,7 +271,6 @@ function Close(){
 
 
 function createPDF(Idi,V){      
-  if(V=="1"){
     Id=Idi;
     $.ajax({
       url: "Ajax/PDF.php",
@@ -294,14 +287,6 @@ function createPDF(Idi,V){
         console.log(data);
         //window.open('Ajax/PDF.php');
       }})
-    }else{
-      document.getElementById('alert1').hidden=false;
-      setTimeout(
-        function() {
-        console.log("run");
-        document.getElementById('alert1').hidden=true;
-        }, 3000);
-    }
 }
 
 

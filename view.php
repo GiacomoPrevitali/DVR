@@ -11,7 +11,7 @@ $sql ='SELECT * FROM documento WHERE Id ="'.$_GET['Id'].'"';
 $result = $connection->query($sql);
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc(); 
-if($row['Validità']==1){
+//if($row['Validità']==1){
 $pdf = new FPDF();
 $pdf->SetTitle('PDF');
 $pdf->SetAuthor('Creator');
@@ -51,6 +51,26 @@ $pdf->Cell(40,10,$row['DataU'],0,0);
     }else{
         $durata="2-8 ore";
     }
+    if ($row['IndiceSollevamento'] <= 0.85) {
+        $pdf->SetFillColor(0, 204, 1);
+    } else if ($row['IndiceSollevamento'] <= 0.99) {
+        $pdf->SetFillColor(255, 153, 0);
+    } else {
+        $pdf->SetFillColor(204, 51, 0); 
+    }
+    if ($row['PesoMax'] < 0) {
+        $pdf->Cell(190, 20, "Situazione non accettabile: bisogna riprogettare la postazione lavorativa e le attività di lavoro", 1, 1, 'C', true);
+    }
+    //$pdf->Cell(0, 10, "Indice di sollevamento: $row['IndiceSollevamento']", 1, 1, 'C', true);
+    if ($row['IndiceSollevamento'] <= 0.85) {
+        $pdf->Cell(190, 20, "Situazione accettabile: non e' necessario nessun provvedimento", 1, 1, 'C', true);
+    } else if ($row['IndiceSollevamento'] <= 0.99) {
+        $pdf->Cell(190, 20, "E' necessario attivare la sorveglianza sanitaria e la formazione e informazione del personale", 1, 1, 'C', true);
+    } else {
+        $pdf->Cell(190, 20, "E' necessario attivare interventi di prevenzione, la sorveglianza sanitaria annuale", 1, 1, 'C', true);
+        $pdf->Cell(190, 20, " e la formazione e informazione del personale", 1, 1, 'C', true);
+    }
+    
     $descrizioni = array(
         'Peso effettivo: '.$row['PesoEffettivo'].' Kg',
         'Altezza iniziale: '.$row['AltezzaIniziale'].' cm',
@@ -83,6 +103,10 @@ for ($row = 0; $row < $max_rows; $row++) {
     }
 }
 
+
+
+
+
         $pdf->Output();
         ob_end_flush();
 }else{
@@ -91,7 +115,7 @@ for ($row = 0; $row < $max_rows; $row++) {
           </div>';
 }
 }
-}
+
 ?>
 
 
@@ -248,12 +272,6 @@ for ($row = 0; $row < $max_rows; $row++) {
 <div class="alert alert-info" role="alert" id="NoVal" hidden>
     Non sono presenti valutazioni
   </div>
-        <div class="alert alert-danger" role="alert" id="alert" hidden>
-            Non puoi modificare una valutazione non valida
-          </div>
-          <div class="alert alert-danger" role="alert" id="alert1" hidden>
-            Non puoi stampare una valutazione non valida
-          </div>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

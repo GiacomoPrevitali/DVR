@@ -62,6 +62,26 @@ for ($row = 0; $row < $max_rows; $row++) {
         $pdf->MultiCell($col_width, $row_height, $descrizioni[$index], 1, 'C', true);
     }
 }
+
+if ($row['IndiceSollevamento'] <= 0.85) {
+    $pdf->SetFillColor(0, 204, 1);
+} else if ($row['IndiceSollevamento'] <= 0.99) {
+    $pdf->SetFillColor(255, 153, 0);
+} else {
+    $pdf->SetFillColor(204, 51, 0); 
+}
+if ($row['PesoMax'] < 0) {
+    $pdf->Cell(190, 20, "Situazione non accettabile: bisogna riprogettare la postazione lavorativa e le attività di lavoro", 1, 1, 'C', true);
+}
+$pdf->Cell(0, 10, "Indice di sollevamento: $row['IndiceSollevamento']", 1, 1, 'C', true);
+if ($row['IndiceSollevamento'] <= 0.85) {
+    $pdf->Cell(190, 20, "Situazione accettabile: non e' necessario nessun provvedimento", 1, 1, 'C', true);
+} else if ($row['IndiceSollevamento'] <= 0.99) {
+    $pdf->Cell(190, 20, "E' necessario attivare la sorveglianza sanitaria e la formazione e informazione del personale", 1, 1, 'C', true);
+} else {
+    $pdf->Cell(190, 20, "E' necessario attivare interventi di prevenzione, la sorveglianza sanitaria annuale", 1, 1, 'C', true);
+    $pdf->Cell(190, 20, " e la formazione e informazione del personale", 1, 1, 'C', true);
+}
         $pdf->Output();
         ob_end_flush();
 }
