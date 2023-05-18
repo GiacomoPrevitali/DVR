@@ -61,7 +61,7 @@ session_start();
 
             <br>
             <a href="new.html">
-                <button type="button" id="NuovoDVR" class="btn btn-primary BtnCh">Compila un nuovo DVR</button>
+                <button type="button" id="NuovoDVR" class="btn btn-primary BtnCh" hidden>Compila un nuovo DVR</button>
             </a>
             <br>
             <a href="view.php" id="viewHome">
@@ -74,7 +74,7 @@ session_start();
             </a>
             <br>
             <a href="singup.html">
-                <button type="button" class="btn btn-info BtnCh" id="NuovoUtente">Nuovo Utente</button>
+                <button type="button" class="btn btn-info BtnCh" id="NuovoUtente" hidden>Nuovo Utente</button>
             </a>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>

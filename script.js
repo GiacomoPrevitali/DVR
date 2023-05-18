@@ -5,25 +5,31 @@
   var lunghezza;
   function VerUtente(Id){
     IdUtente=Id;
-    if(Id=="0"){
+    alert(IdUtente);
+    if(IdUtente==0){
       document.getElementById("NuovoDVR").hidden=false;
       document.getElementById("NuovoUtente").hidden=true;
       document.getElementById("ViewDVR").hidden=true;
-    }else if(Id=="2"){
+      document.getElementById("RSWord").hidden=false;
+      document.getElementById("Startsearch").hidden=false;
+    
+    }else if(IdUtente==2){
+      document.getElementById("RSWord").hidden=true;
+      document.getElementById("Startsearch").hidden=true;
       document.getElementById("NuovoDVR").hidden=true;
       document.getElementById("NuovoUtente").hidden=true;
       document.getElementById("ViewDVR").hidden=false;
+      document.getElementById("table").innerHTML='<table id="table"><thead><tr class="TitleTable bg-primary"><th class="thID">Id </th><th class="thNA">Ragione Sociale</th><th class="thDA">Data</th><th>Peso Limite (Kg)</th><th class="thIS">Indice Sollevamento</th><th>Prezzo</th><th>Validità</th><th> PDF</th><th>Modifica</th><th>Elimina</th></tr></thead></table>';
+      
+
       Image.hidden=true;
-      document.getElementById("table").innerHTML-="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/PDF.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/Modifca.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/X.png' ></td></tr>"; 
-      alert(lunghezza);
-      for(var i=0; i<=lunghezza;i++){
-        document.getElementById("modifica"+i).hidden=true;
-        document.getElementById("elimina"+i).hidden=true;
-      }
-    }else{
+      }else if(IdUtente==1){
+      
       document.getElementById("NuovoDVR").hidden=false;
       document.getElementById("NuovoUtente").hidden=false;
-      document.getElementById("ViewDVR").hidden=false;
+      document.getElementById("ViewDVR").hidden=true;
+      document.getElementById("RSWord").hidden=false;
+      document.getElementById("Startsearch").hidden=false;
     }
   
   }
@@ -67,8 +73,8 @@
           
         }
         var Pesolimte=Math.round(data[i].PesoMax * 100) / 100;
-        //document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+Pesolimte  +"</td><td>"+IndiceSollevamento+"</td><td>"+freq+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
         
+        //document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+Pesolimte  +"</td><td>"+IndiceSollevamento+"</td><td>"+freq+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
         document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/PDF.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/Modifca.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/X.jpg' ></td></tr>";
       
         i++;
@@ -89,8 +95,8 @@
     },
     error: function (data, xhr, ajaxOptions, thrownError) {
       console.log(data)
-      alert(xhr.status);
-      alert(thrownError);
+      //alert(xhr.status);
+      //alert(thrownError);
     }
     
 });
@@ -99,6 +105,19 @@
 $(document).ready(function() {
   document.getElementById("form1").addEventListener("submit", (e) => {
    //e.preventDefault();
+   var UnaMano;
+   var DuePersone;
+   if(document.getElementById("UnaMano").checked){
+    UnaMano=1;
+   }else{
+    UnaMano=0;
+   }
+   if(document.getElementById("DuePersone").checked){
+    
+    DuePersone=1;
+   }else{
+    DuePersone=0;
+   }
     $.ajax({ 
     url: "Ajax/AddValutation.php",  
     type: "POST",           
@@ -115,11 +134,15 @@ $(document).ready(function() {
       PresaC: document.getElementById("PresaC").value,
       Freq: document.getElementById("Freq").value,
       Prezzo: document.getElementById("Prezzo").value,
-      Durata: document.getElementById("Durata").value
+      Durata: document.getElementById("Durata").value,
+      UnaMano: UnaMano,
+      DuePersone: DuePersone,
+
     },      
     success: function(data){   
       console.log("dati salvati");
-      document.location.href="Home.php"
+      console.log(data);
+      //document.location.href="Home.php"
     },
     error: function (data) {
       console.log(data);
@@ -146,6 +169,7 @@ $(document).ready(function() {
     },      
     success: function(data){   
       console.log("dati salvati");
+      window.location.href="Home.php"
     },
     error: function (data) {
       console.log(data);
@@ -186,6 +210,17 @@ function Update(Idi,V){
       $("#Freq1").val(data[0].FrequenzaGesti);
       $("#Prezzo1").val(data[0].Prezzo);
       $('#Durata1').val(data[0].Durata);
+      if(data[0].Mano==1){
+        document.getElementById("UnaMano1").checked = true;
+      }else{
+        document.getElementById("UnaMano1").checked = false;
+      }
+      if(data[0].DuePersone==1){
+        document.getElementById("DuePersone1").checked = true;
+      }else{
+        document.getElementById("DuePersone1").checked = false;
+      }
+      //$('#DuePersone1').val(data[0].DuePersone);
 
     },
     error: function (data, xhr, ajaxOptions, thrownError) {
@@ -201,6 +236,17 @@ function Update(Idi,V){
 $(document).ready(function() {
   document.getElementById("ModificaDati").addEventListener("submit", (e) => {
     //e.preventDefault();
+    if(document.getElementById("UnaMano1").checked){
+      UnaMano=1;
+     }else{
+      UnaMano=0;
+     }
+     if(document.getElementById("DuePersone1").checked){
+      
+      DuePersone=1;
+     }else{
+      DuePersone=0;
+     }
     $.ajax({ 
     url: "Ajax/AddValutation.php",  
     type: "POST",           
@@ -218,7 +264,9 @@ $(document).ready(function() {
       PresaC: document.getElementById("PresaC1").value,
       Freq: document.getElementById("Freq1").value,
       Prezzo: document.getElementById("Prezzo1").value,
-      Durata: document.getElementById("Durata1").value
+      Durata: document.getElementById("Durata1").value,
+      UnaMano: UnaMano,
+      DuePersone: DuePersone,
     },      
     success: function(data){   
       console.log(data);
@@ -288,6 +336,70 @@ function createPDF(Idi,V){
         //window.open('Ajax/PDF.php');
       }})
 }
+
+$(document).ready(function() {
+  document.getElementById("Startsearch").addEventListener("click", (e) => {
+    e.preventDefault();
+    $.ajax({ 
+    url: "Ajax/Search.php",  
+    type: "POST",           
+    dataType: "json",  
+    data: {
+      RS: document.getElementById("RSWord").value,
+    },      
+    success: function(data){   
+      document.getElementById("table").innerHTML='<table id="table"><thead><tr class="TitleTable bg-primary"><th class="thID">Id </th><th class="thNA">Ragione Sociale</th><th class="thDA">Data</th><th>Peso Limite (Kg)</th><th class="thIS">Indice Sollevamento</th><th>Prezzo</th><th>Validità</th><th> PDF</th><th>Modifica</th><th>Elimina</th></tr></thead></table>';
+      console.log(data);
+      var i=0;
+      if(data.length==0){
+        document.getElementById("table").hidden=true;
+        document.getElementById("NoVal").hidden=false;
+      }  
+     $.each(data, function (key, value) {
+      if(data[i].Nome=="A"){
+        document.getElementById("table").hidden=true;
+        document.getElementById("NoVal").hidden=false;
+      }else{
+        document.getElementById("table").hidden=false;
+        document.getElementById("NoVal").hidden=true;
+      var val="";
+      var val1="";
+      if(data[i].PresaCarico=="1"){
+        val1="Buona";
+      }else{
+        val1="Scarsa";
+      }
+      if(data[i].Validità=="1"){
+        val="Valido";
+      }else{
+        val="Non Valido";
+      }
+      var IndiceSollevamento;
+      if(data[i].FrequenzaGesti=="20"){
+        freq="0.20";
+      }else{
+        freq=data[i].FrequenzaGesti;
+      }
+      if(data[i].IndiceSollevamento=="-1"){
+        IndiceSollevamento="Non Calcolabile";
+      }else{
+        IndiceSollevamento=Math.round(data[i].IndiceSollevamento * 100) / 100;
+        
+      }
+      var Pesolimte=Math.round(data[i].PesoMax * 100) / 100;
+      
+      document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/PDF.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/Modifca.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/X.png' ></td></tr>"; 
+      i++;
+      }
+      });
+    
+    },
+    error: function (data) {
+      console.log(data);
+    }})
+  });
+});
+
 
 
 

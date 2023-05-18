@@ -63,12 +63,12 @@ $pdf->Cell(40,10,$row['DataU'],0,0);
     }
     //$pdf->Cell(0, 10, "Indice di sollevamento: $row['IndiceSollevamento']", 1, 1, 'C', true);
     if ($row['IndiceSollevamento'] <= 0.85) {
-        $pdf->Cell(190, 20, "Situazione accettabile: non e' necessario nessun provvedimento", 1, 1, 'C', true);
+        $pdf->Cell(190, 20, "Non e' necessario nessun provvedimento", 1, 1, 'C', true);
     } else if ($row['IndiceSollevamento'] <= 0.99) {
-        $pdf->Cell(190, 20, "E' necessario attivare la sorveglianza sanitaria e la formazione e informazione del personale", 1, 1, 'C', true);
+        $pdf->Cell(190, 20, "Sorveglianza sanitaria e  formazione e informazione del personale necessarie", 1, 1, 'C', true);
     } else {
-        $pdf->Cell(190, 20, "E' necessario attivare interventi di prevenzione, la sorveglianza sanitaria annuale", 1, 1, 'C', true);
-        $pdf->Cell(190, 20, " e la formazione e informazione del personale", 1, 1, 'C', true);
+        $pdf->SetFont('Arial','B',10,);
+        $pdf->Cell(190, 20, "Interventi di prevenzione,  sorveglianza sanitaria annuale e formazione e informazione del personale necessarie", 1, 1, 'C', true);
     }
     
     $descrizioni = array(
@@ -102,6 +102,7 @@ for ($row = 0; $row < $max_rows; $row++) {
         $pdf->MultiCell($col_width+90, $row_height, $descrizioni[$index], 1, 'C', true);
     }
 }
+
 
 
 
@@ -164,32 +165,69 @@ for ($row = 0; $row < $max_rows; $row++) {
                       </div>
                           <input id="Data1"        name="Data"        placeholder="Data"                       type="date"                                     required><br>
                       <div class="form-floating mb-3">
-                          <input id="pesoEff1"     name="pesoEff"     placeholder="Peso Effettivo (Kg)"        type="number" min="0"   class="form-control"    required><br>
+                          <input id="pesoEff1"     name="pesoEff"     placeholder="Peso Effettivo (Kg)"        type="number" min="3" max="30"   class="form-control"    required><br>
                           <label for="floatingInput">Peso Effettivo (Kg)</label>  
                       </div>
-                      <div class="form-floating mb-3">
-                          <input id="AltIn1"       name="AltIn"       placeholder="Altezza Iniziale (Cm)"      type="number" min="0"   class="form-control"   required><br>
-                          <label for="floatingInput">Altezza Iniziale (Cm)</label>  
-                      </div>
-                      <div class="form-floating mb-3">
-                          <input id="DistVert1"    name="DistVert"    placeholder="Distanza Verticale (Cm)"    type="number" min="0"   class="form-control"   required><br>
-                          <label for="floatingInput">Distanza Verticale (Cm)</label>  
-                      </div>
-                      <div class="form-floating mb-3">
-                          <input id="DistOrizz1"   name="DistOrizz"   placeholder="Distanza orizzontale (Cm)"  type="number" min="0"   class="form-control"   required><br>
-                          <label for="floatingInput">Distanza orizzontale (Cm)</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                          <input id="DistAngo1"    name="DistAngo"    placeholder="Distanza angolare "          type="number" min="0"   class="form-control"   required><br>
-                          <label for="floatingInput">Distanza angolare </label>
-                      </div>
-                      <select id="PresaC1"     name="PresaC" required>
+                      <div class="form-floating">
+                      <select  class="form-select"  id="AltIn1"     name="AltIn" required>
+                        <option value="" disabled selected>Altezza Iniziale (Cm)</option>
+                        <option value="0">0</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="75">75</option>
+                        <option value="100">100</option>
+                        <option value="125">125</option>
+                        <option value="150">150</option>
+                        <option value="175">175</option>
+                    </select>
+                    <label for="floatingSelect">Altezza Iniziale (Cm)</label><br>
+                    </div>
+                    <div class="form-floating">
+                    <select class="form-select" id="DistVert1"     name="DistVert" required>
+                        <option value="" disabled selected>Distanza Verticale (Cm)</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="70">70</option>
+                        <option value="100">100</option>
+                        <option value="150">150</option>
+                        <option value="175">175</option>
+                    </select><label for="floatingSelect">Distanza Verticale (Cm)</label><br><br>
+                    </div>
+                    <div class="form-floating">
+                    <select class="form-select" id="DistOrizz1"     name="DistOrizz" required>
+                        <option value="" disabled selected>Distanza orizzontale (Cm)</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="55">55</option>
+                        <option value="60">60</option>
+                        <option value="63">63</option>
+                    </select><label for="floatingSelect">Distanza orizzontale (Cm</label><br><br>
+                    </div>
+                    <div class="form-floating"> 
+                    <select  class="form-select" id="DistAngo1"     name="DistAngo" required>
+                        <option value="" disabled selected>Distanza angolare</option>
+                        <option value="0">0</option>
+                        <option value="30">30</option>
+                        <option value="60">60</option>
+                        <option value="90">90</option>
+                        <option value="120">120</option>
+                        <option value="135">135</option>
+                        <option value="136">136</option>
+                    </select><label for="floatingSelect">Distanza Angolare </label><br><br>
+                    </div>
+                    <div class="form-floating">
+                      <select  class="form-select" id="PresaC1"     name="PresaC" required>
                           <option value="" disabled selected>Presa sul carico</option>
                           <option value="1">Buona</option>
                           <option value="0">Scarsa</option>
-                      </select><br>
-                      <!--<input id="PesoMax1"     name="PesoMax"          placeholder="Peso massimo"          required><br>-->
-                      <select id="Freq1"     name="Freq" required >
+                      </select><label for="floatingSelect">Presa sul carico</label><br><br>
+                      </div>
+                      <div class="form-floating">
+                      <select class="form-select" id="Freq1"     name="Freq" required >
                           <option value="" disabled selected>Frequenza</option>
                           <option value="20">0,20 gesti/minuto</option>
                           <option value="1">1 gesti/minuto</option>
@@ -198,16 +236,30 @@ for ($row = 0; $row < $max_rows; $row++) {
                           <option value="9">9 gesti/minuto</option>
                           <option value="12">12 gesti/minuto</option>
                           <option value="15">>15 gesti/minuto</option>
-                      </select><br>
-                      <select id="Durata1"     name="PresaC" required>
+                      </select><label for="floatingSelect">Frequenza</label><br><br>
+                      </div>
+                      <div class="form-floating">
+                      <select  class="form-select" id="Durata1"     name="PresaC" required>
                           <option value="" disabled selected>Durata</option>
                           <option value="1">< 1 ora</option>
                           <option value="2"> da 1 a 2 ore</option>
                           <option value="8"> da 2 a 8 ore</option>
-                      </select><br>
+                      </select><label for="floatingSelect">Durata</label><br><br>
+                    </div>
+                      <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="UnaMano1">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Sollevamento con una sola mano
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="DuePersone1">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Sollevamento in 2 persone
+                            </label>
+                      </div>
                       <div class="modal-footer">
                         <button id="ButtUpdate" type="submit" class="btn btn-success" data-bs-dismiss="modal">Salva</button>
-                        <!--<button id="ButtUpdate" type="submit">Salva</button>-->
                     </div> 
                     </form>
                 </div>
@@ -242,6 +294,10 @@ for ($row = 0; $row < $max_rows; $row++) {
     <a href="Home.php">
     <input type="button"class="btn btn-outline-primary" id="view"  value="Torna alla pagina principale"> 
     </a>
+    <div class="input-group searchBarGroup">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" id="RSWord" />
+        <button type="button" class="btn btn-outline-primary" id="Startsearch">search</button>
+    </div>
     <br>
     <div id="table-container"></div>
     <br>
