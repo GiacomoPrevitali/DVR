@@ -5,7 +5,7 @@
   var lunghezza;
   function VerUtente(Id){
     IdUtente=Id;
-    alert(IdUtente);
+    //alert(IdUtente);
     if(IdUtente==0){
       document.getElementById("NuovoDVR").hidden=false;
       document.getElementById("NuovoUtente").hidden=true;
@@ -103,7 +103,7 @@
 
 //NUOVE VALUTAZIONI
 $(document).ready(function() {
-  document.getElementById("form1").addEventListener("submit", (e) => {
+  document.getElementById("form1").addEventListener("submit", (e) => { 
    //e.preventDefault();
    var UnaMano;
    var DuePersone;
@@ -142,7 +142,7 @@ $(document).ready(function() {
     success: function(data){   
       console.log("dati salvati");
       console.log(data);
-      //document.location.href="Home.php"
+      document.location.href="Home.php"
     },
     error: function (data) {
       console.log(data);

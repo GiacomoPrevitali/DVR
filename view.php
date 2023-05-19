@@ -58,6 +58,7 @@ $pdf->Cell(40,10,$row['DataU'],0,0);
     } else {
         $pdf->SetFillColor(204, 51, 0); 
     }
+    if($row['Validità']==1){
     if ($row['PesoMax'] < 0) {
         $pdf->Cell(190, 20, "Situazione non accettabile: bisogna riprogettare la postazione lavorativa e le attività di lavoro", 1, 1, 'C', true);
     }
@@ -70,7 +71,23 @@ $pdf->Cell(40,10,$row['DataU'],0,0);
         $pdf->SetFont('Arial','B',10,);
         $pdf->Cell(190, 20, "Interventi di prevenzione,  sorveglianza sanitaria annuale e formazione e informazione del personale necessarie", 1, 1, 'C', true);
     }
+}else{
+    $pdf->SetFillColor(204, 51, 0); 
+    $pdf->Cell(190, 20, "Valutazione Scaduta", 1, 1, 'C', true);
     
+}
+    $Pers;
+    $Mano;
+    if($row['DuePersone']==1){
+       $Pers="Si";
+    }else{
+        $Pers="No";
+    }
+    if($row['Mano']==1){
+        $Mano="Si";
+     }else{
+         $Mano="No";
+     }
     $descrizioni = array(
         'Peso effettivo: '.$row['PesoEffettivo'].' Kg',
         'Altezza iniziale: '.$row['AltezzaIniziale'].' cm',
@@ -84,7 +101,9 @@ $pdf->Cell(40,10,$row['DataU'],0,0);
         'Peso raccomandato: '.$row['PesoMax'].' Kg',
         'Indice sollevamento: '.$row['IndiceSollevamento'],
         //'Esito: '.$row['esito'],
-        'Prezzo: '.$row['Prezzo'].' Euro'
+        'Prezzo: '.$row['Prezzo'].' Euro',
+        'Utilizza una mano sola: '.$Mano,
+        'Il carico muove 2 persone: '.$Pers,
     );
 $max_rows = 8;
 $col_width = $pdf->GetPageWidth() / 2 - 5;

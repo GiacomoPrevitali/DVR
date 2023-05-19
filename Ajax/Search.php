@@ -3,7 +3,7 @@ session_start();
 require_once('config.php');
 if(isset($_REQUEST['RS'])){
     if($_REQUEST['RS']!=""){
-    $sql ='SELECT * FROM documento WHERE Nome="'.$_REQUEST['RS'].'"';
+    $sql ='SELECT * FROM documento WHERE Nome LIKE "'.$_REQUEST['RS'].'%"';
     }else{
         $sql ='SELECT * FROM documento';
     }
