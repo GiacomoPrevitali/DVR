@@ -1,11 +1,11 @@
-  //VIEW
+
   var Id;
   var freq;
   var IdUtente;
   var lunghezza;
   function VerUtente(Id){
     IdUtente=Id;
-    //alert(IdUtente);
+    QueryDVR(IdUtente);
     if(IdUtente==0){
       document.getElementById("NuovoDVR").hidden=false;
       document.getElementById("NuovoUtente").hidden=true;
@@ -19,21 +19,22 @@
       document.getElementById("NuovoDVR").hidden=true;
       document.getElementById("NuovoUtente").hidden=true;
       document.getElementById("ViewDVR").hidden=false;
-      document.getElementById("table").innerHTML='<table id="table"><thead><tr class="TitleTable bg-primary"><th class="thID">Id </th><th class="thNA">Ragione Sociale</th><th class="thDA">Data</th><th>Peso Limite (Kg)</th><th class="thIS">Indice Sollevamento</th><th>Prezzo</th><th>Validità</th><th> PDF</th></th></tr></thead></table>';
+      //document.getElementById("table").innerHTML='<table id="table"><thead><tr class="TitleTable bg-primary"><th class="thID">Id </th><th class="thNA">Ragione Sociale</th><th class="thDA">Data</th><th>Peso Limite (Kg)</th><th class="thIS">Indice Sollevamento</th><th>Prezzo</th><th>Validità</th><th> PDF</th></th></tr></thead></table>';
       
 
       Image.hidden=true;
       }else if(IdUtente==1){
-      
       document.getElementById("NuovoDVR").hidden=false;
       document.getElementById("NuovoUtente").hidden=false;
       document.getElementById("ViewDVR").hidden=true;
       document.getElementById("RSWord").hidden=false;
       document.getElementById("Startsearch").hidden=false;
+
     }
-  
+    
   }
-  $(document).ready(function() {
+
+function QueryDVR(IdUtente) {  
   $.ajax({    
     url: "Ajax/QueryDVR.php",             
     dataType: "json",  
@@ -45,7 +46,13 @@
       if(data.length==0){
           document.getElementById("table").hidden=true;
           document.getElementById("NoVal").hidden=false;
-        }  
+        }
+        if(IdUtente==2){
+          document.getElementById("table").innerHTML+="<thead><tr class='TitleTable bg-primary'><th class='thID'>Id </th><th class='thNA'>Ragione Sociale</th><th class='thDA'>Data</th><th>Peso Limite (Kg)</th><th class='thIS'>Indice Sollevamento</th><th>Prezzo</th><th>Validità</th><th> PDF</th></tr></thead>";
+        }else{
+          document.getElementById("table").innerHTML+="<thead><tr class='TitleTable bg-primary'><th class='thID'>Id </th><th class='thNA'>Ragione Sociale</th><th class='thDA'>Data</th><th>Peso Limite (Kg)</th><th class='thIS'>Indice Sollevamento</th><th>Prezzo</th><th>Validità</th><th> PDF</th><th>Modifica</th><th>Elimina</th></tr></thead>";
+          
+        }
        $.each(data, function (key, value) {
         var val="";
         var val1="";
@@ -72,10 +79,15 @@
           
         }
         var Pesolimte=Math.round(data[i].PesoMax * 100) / 100;
-        
-        //document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+Pesolimte  +"</td><td>"+IndiceSollevamento+"</td><td>"+freq+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
-        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/download_Icon.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/edit.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/delete.png  ' ></td></tr>";
+        if(IdUtente==2){
+          document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/download_Icon.png' ></a></td></tr>";
       
+        }else{
+          document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/download_Icon.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/edit.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/delete.png  ' ></td></tr>";
+
+        }
+        //document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+Pesolimte  +"</td><td>"+IndiceSollevamento+"</td><td>"+freq+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
+              
         i++;
         var tds = document.getElementsByTagName("td");
         for(var h = 0, j = tds.length; h < j; h++){
@@ -99,7 +111,7 @@
     }
     
 });
-});
+}
 
 //NUOVE VALUTAZIONI
 $(document).ready(function() {
@@ -142,7 +154,7 @@ $(document).ready(function() {
     success: function(data){   
       console.log("dati salvati");
       console.log(data);
-      document.location.href="Home.php"
+      window.open="Home.php";
     },
     error: function (data) {
       console.log(data);
@@ -153,7 +165,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   document.getElementById("formUtente").addEventListener("submit", (e) => {
-   //e.preventDefault();
+   e.preventDefault();
     $.ajax({ 
     url: "Ajax/AddUser.php",  
     type: "POST",           
@@ -169,7 +181,7 @@ $(document).ready(function() {
     },      
     success: function(data){   
       console.log("dati salvati");
-      window.location.href="Home.php"
+      window.open="Home.php";
     },
     error: function (data) {
       console.log(data);
@@ -301,7 +313,7 @@ function Delete1(Idi){
     success: function(data){  
       console.log("dati cancellati");
       console.log(data);
-      document.location.href = "view.html";
+      document.location.href = "view.php";
     },
     error: function (data, xhr, ajaxOptions, thrownError) {
       console.log(data);

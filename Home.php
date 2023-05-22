@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(!isset($_SESSION['Permesso'])){
+    header("Location: index.php?error");
+}
 ?>
 
 <!DOCTYPE html>

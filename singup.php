@@ -28,7 +28,7 @@
        
     <div class="container">   
         <div class="form-floating mb-3">
-            <input id="NomeUser"        name="NomeUser"        placeholder="Nome"                                    class="form-control"    required><br>
+            <input id="NomeUser"        name="NomeUser"        placeholder="Nome"            class="form-control"    required><br>
             <label for="floatingInput">Nome</label>  
         </div>
         <div class="form-floating mb-3">
@@ -36,7 +36,7 @@
             <label for="floatingInput">Cognome</label> 
         </div>
         <div class="form-floating mb-3">
-            <input id="RagioneUser"       name="RagioneUser"       placeholder="Ragione Sociale"      type="text"    class="form-control"   required><br>
+            <input id="RagioneUser"       name="RagioneUser"       placeholder="Ragione Sociale"      type="text"    class="form-control"   ><br>
             <label for="floatingInput">Ragione Sociale</label>  
         </div>
         <select id="PermessiUser"     name="PermessiUser" required>
@@ -53,7 +53,7 @@
             <label for="floatingInput">Password</label>  
         </div>
         <br>
-      <button id="sendNew" class="btn btn-outline-success" type="submit" >Crea nuovo DVR</button>
+      <button id="sendNew" class="btn btn-outline-success" type="submit" >Aggiungi Utente</button>
     </div>
     </form>
 </div>

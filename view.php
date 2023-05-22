@@ -1,6 +1,9 @@
 
 <?php
 session_start();
+if(!isset($_SESSION['Permesso'])){
+    header("Location: index.php?error");
+}
 ob_start();
 require('./fpdf/fpdf.php');
 require_once('./Ajax/config.php');
@@ -320,7 +323,7 @@ for ($row = 0; $row < $max_rows; $row++) {
    
     <br>    
     <div class="input-group searchBarGroup">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" id="RSWord" />
+        <input type="search" class="form-control rounded" placeholder="Cerca per Ragione Sociale" aria-label="Search" aria-describedby="search-addon" id="RSWord" />
         <button type="button" class="btn btn-outline-primary" id="Startsearch">search</button>
     </div>
     
@@ -328,28 +331,7 @@ for ($row = 0; $row < $max_rows; $row++) {
     <div id="table-container"></div>
     <br>
     <table id="table" >
-        <thead>
-            <tr class="TitleTable bg-primary">
-                <th class="thID">Id </th>
-                <th class="thNA">Ragione Sociale</th>
-                <th class="thDA">Data</th>
-                <!--<th>Peso Effettivo (Kg)</th>-->
-                <!--<th>Altezza Iniziale (Cm)</th>-->
-              <!--  <th class="thDV">Distanza Verticale (Cm)</th>
-                <th class="thDO">Distanza Orizzontale (Cm)</th>
-                <th class="thAN">Distanza Angolare(°)</th>-->
-                <!--<th>Fattore Presa</th>-->
-                <th>Peso Limite (Kg)</th>
-                <th class="thIS">Indice Sollevamento</th>
-               <!-- <th>Frequenza al minuto</th>-->
-                <th>Prezzo</th>
-                <th>Validità</th>
-                <th> PDF</th>
-                <th>Modifica</th>
-                <th>Elimina</th>                           
-            </tr>
-        </thead>
-      </table>
+        </table>
       <br>
       <a href="Home.php">
     <input type="button"class="btn btn-outline-primary" id="view"  value="Torna alla pagina principale"> 
