@@ -19,7 +19,7 @@
       document.getElementById("NuovoDVR").hidden=true;
       document.getElementById("NuovoUtente").hidden=true;
       document.getElementById("ViewDVR").hidden=false;
-      document.getElementById("table").innerHTML='<table id="table"><thead><tr class="TitleTable bg-primary"><th class="thID">Id </th><th class="thNA">Ragione Sociale</th><th class="thDA">Data</th><th>Peso Limite (Kg)</th><th class="thIS">Indice Sollevamento</th><th>Prezzo</th><th>Validità</th><th> PDF</th><th>Modifica</th><th>Elimina</th></tr></thead></table>';
+      document.getElementById("table").innerHTML='<table id="table"><thead><tr class="TitleTable bg-primary"><th class="thID">Id </th><th class="thNA">Ragione Sociale</th><th class="thDA">Data</th><th>Peso Limite (Kg)</th><th class="thIS">Indice Sollevamento</th><th>Prezzo</th><th>Validità</th><th> PDF</th></th></tr></thead></table>';
       
 
       Image.hidden=true;
@@ -33,15 +33,14 @@
     }
   
   }
-
+  $(document).ready(function() {
   $.ajax({    
     url: "Ajax/QueryDVR.php",             
     dataType: "json",  
     contentType: "application/json; charset=utf-8",        
     success: function(data){
       lunghezza=data.length;
-      console.log(data);
-     // alert(IdUtente);   
+      console.log(data);   
       var i=0;       
       if(data.length==0){
           document.getElementById("table").hidden=true;
@@ -75,7 +74,7 @@
         var Pesolimte=Math.round(data[i].PesoMax * 100) / 100;
         
         //document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+data[i].PesoEffettivo+"</td><td>"+data[i].AltezzaIniziale+"</td><td>"+data[i].DistanzaVerticale+"</td><td>"+data[i].DistanzaOrizzontale+"</td><td>"+data[i].DistanzaAngolare+"</td><td>"+val1+"</td><td>"+Pesolimte  +"</td><td>"+IndiceSollevamento+"</td><td>"+freq+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td>Visualizza</td><td onclick='Update("+data[i].Id+")'>Modifica</td><td onclick='Delete("+data[i].Id+")'>Cancella</td></tr>";
-        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/PDF.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/Modifca.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/X.jpg' ></td></tr>";
+        document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/download_Icon.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/edit.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/delete.png  ' ></td></tr>";
       
         i++;
         var tds = document.getElementsByTagName("td");
@@ -99,6 +98,7 @@
       //alert(thrownError);
     }
     
+});
 });
 
 //NUOVE VALUTAZIONI
@@ -388,7 +388,7 @@ $(document).ready(function() {
       }
       var Pesolimte=Math.round(data[i].PesoMax * 100) / 100;
       
-      document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/PDF.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/Modifca.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/X.png' ></td></tr>"; 
+      document.getElementById("table").innerHTML+="<tr><td>"+data[i].Id+"</td><td>"+data[i].Nome+"</td><td>"+data[i].DataU+"</td><td>"+Pesolimte  +" Kg</td><td id=Ind"+i+">"+IndiceSollevamento+"</td><td>"+data[i].Prezzo+"€</td><td id=checkVal"+i+">"+val+"</td><td id='crea"+i+"' onclick='createPDF("+data[i].Id+","+data[i].Validità+")'><a href='view.php?Id="+data[i].Id+"'><img src='./Foto/download_Icon.png' ></a></td><td id='modifica"+i+"' onclick='Update("+data[i].Id+","+data[i].Validità+")'><img src='./Foto/edit.png'></td><td id='elimina"+i+"'onclick='Delete("+data[i].Id+")'><img src='./Foto/delete.png' ></td></tr>"; 
       i++;
       }
       });

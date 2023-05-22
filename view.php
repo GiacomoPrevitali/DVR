@@ -11,6 +11,7 @@ $sql ='SELECT * FROM documento WHERE Id ="'.$_GET['Id'].'"';
 $result = $connection->query($sql);
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc(); 
+    $row['DataU']=date('d-m-Y', strtotime($row['DataU']));
 //if($row['Validità']==1){
 $pdf = new FPDF();
 $pdf->SetTitle('PDF');
@@ -73,7 +74,7 @@ $pdf->Cell(40,10,$row['DataU'],0,0);
     }
 }else{
     $pdf->SetFillColor(204, 51, 0); 
-    $pdf->Cell(190, 20, "Valutazione Scaduta", 1, 1, 'C', true);
+    $pdf->Cell(190, 20, "Valutazione Scaduta o non valida", 1, 1, 'C', true);
     
 }
     $Pers;
@@ -88,6 +89,13 @@ $pdf->Cell(40,10,$row['DataU'],0,0);
      }else{
          $Mano="No";
      }
+     if($row['IndiceSollevamento']==-1){
+        $Indice="Non calcolabile";
+     }else{
+        $Indice=$row['IndiceSollevamento'];
+     }
+
+
     $descrizioni = array(
         'Peso effettivo: '.$row['PesoEffettivo'].' Kg',
         'Altezza iniziale: '.$row['AltezzaIniziale'].' cm',
@@ -99,7 +107,7 @@ $pdf->Cell(40,10,$row['DataU'],0,0);
         'Durata: '.$durata.'',
         //'Validita: '.$row['Validità'],
         'Peso raccomandato: '.$row['PesoMax'].' Kg',
-        'Indice sollevamento: '.$row['IndiceSollevamento'],
+        'Indice sollevamento: '.$Indice,
         //'Esito: '.$row['esito'],
         'Prezzo: '.$row['Prezzo'].' Euro',
         'Utilizza una mano sola: '.$Mano,
@@ -310,14 +318,13 @@ for ($row = 0; $row < $max_rows; $row++) {
       </div>
 
    
-    <a href="Home.php">
-    <input type="button"class="btn btn-outline-primary" id="view"  value="Torna alla pagina principale"> 
-    </a>
+    <br>    
     <div class="input-group searchBarGroup">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" id="RSWord" />
         <button type="button" class="btn btn-outline-primary" id="Startsearch">search</button>
     </div>
-    <br>
+    
+    
     <div id="table-container"></div>
     <br>
     <table id="table" >
@@ -343,6 +350,10 @@ for ($row = 0; $row < $max_rows; $row++) {
             </tr>
         </thead>
       </table>
+      <br>
+      <a href="Home.php">
+    <input type="button"class="btn btn-outline-primary" id="view"  value="Torna alla pagina principale"> 
+    </a>
 <br>
 <div class="alert alert-info" role="alert" id="NoVal" hidden>
     Non sono presenti valutazioni

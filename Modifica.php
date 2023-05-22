@@ -24,7 +24,7 @@
     </nav>
     <div class="form-row">
     <div class="form-col">
-    <form class="" method="POST" action="new.html">
+    <form class="" method="POST" action="new.php">
        
     <div class="container">      
         <input id="Nome1" name="Nome"        placeholder="Ragione sociale"><br>
